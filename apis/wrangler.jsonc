@@ -1,0 +1,6 @@
+{
+  "name": "sim-apis-sample-app",
+  "compatibility_date": "2025-05-28", // Update this date to the current date
+  "main": "src/index.ts",
+  "compatibility_flags": ["nodejs_compat"]
+}

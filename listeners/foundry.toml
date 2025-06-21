@@ -1,0 +1,15 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+fs_permissions = [{ access = "read-write", path = "./" }]
+optimizer = true
+optimizer-runs = 200
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+
+# This is the same optimization we do on the server side
+[profile.default.optimizer_details.yulDetails]
+stackAllocation = true
+optimizerSteps = ''
+via_ir = true
