@@ -2,8 +2,10 @@ import { Hono } from "hono";
 import { drizzle } from "drizzle-orm/neon-http";
 import { desc, eq, and, lte, sql, gt, ne } from "drizzle-orm";
 import { PgDialect } from "drizzle-orm/pg-core";
-import { lpEvents, poolTicksPerBlock, positionOwnerChanges } from "../../../univ3-lps/apis/src/db/schema/Listener"; // Adjust the import path as necessary
-import { Address, Uint } from "../../../univ3-lps/apis/src/sim/types";
+import { lpEvents, poolTicksPerBlock, positionOwnerChanges } from "./db/schema/Listener"; // Adjust the import path as necessary
+import { simDb, simTypes } from "sim-idx";
+const Address = simTypes.Address;
+const Uint = simTypes.Uint;
 
 type Bindings = {
   DB_CONNECTION_STRING: string;
