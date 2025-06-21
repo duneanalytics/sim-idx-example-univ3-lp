@@ -2,8 +2,13 @@ import { Hono } from "hono";
 import { drizzle } from "drizzle-orm/neon-http";
 import { desc, eq, and, lte, sql, gt, ne } from "drizzle-orm";
 import { PgDialect } from "drizzle-orm/pg-core";
-import { lpEvents, poolTicksPerBlock, positionOwnerChanges } from "./db/schema/Listener"; // Adjust the import path as necessary
+import {
+  lpEvents,
+  poolTicksPerBlock,
+  positionOwnerChanges,
+} from "./db/schema/Listener"; // Adjust the import path as necessary
 import { simDb, simTypes } from "sim-idx";
+
 const Address = simTypes.Address;
 const Uint = simTypes.Uint;
 
@@ -57,6 +62,11 @@ app.get("/lp-snapshot", async (c) => {
       .select({
         block_number: poolTicksPerBlock.blockNumber,
         tick: poolTicksPerBlock.tick,
+        sqrtPriceX96: poolTicksPerBlock.sqrtPriceX96,
+        token0: poolTicksPerBlock.token0,
+        token1: poolTicksPerBlock.token1,
+        token0Decimals: poolTicksPerBlock.token0Decimals,
+        token1Decimals: poolTicksPerBlock.token1Decimals,
       })
       .from(poolTicksPerBlock)
       .where(
@@ -77,7 +87,9 @@ app.get("/lp-snapshot", async (c) => {
             .as("liqAmt"),
         owner: lpEvents.owner,
         tickLower: lpEvents.tickLower,
+        sqrtPriceX96Lower: lpEvents.sqrtPriceX96Lower,
         tickUpper: lpEvents.tickUpper,
+        sqrtPriceX96Upper: lpEvents.sqrtPriceX96Upper,
         tokenId: lpEvents.tokenId,
       })
       .from(lpEvents)
@@ -124,10 +136,7 @@ app.get("/lp-snapshot", async (c) => {
         latestPosChanges,
         and(
           eq(positionOwnerChanges.tokenId, latestPosChanges.tokenId),
-          eq(
-            positionOwnerChanges.blockNumber,
-            latestPosChanges.latestBlock
-          )
+          eq(positionOwnerChanges.blockNumber, latestPosChanges.latestBlock)
         )
       )
       .as("latestOwners");
@@ -137,6 +146,14 @@ app.get("/lp-snapshot", async (c) => {
         liquidity: sql`sum(${lpEventsForPool.liqAmt})`
           .mapWith(lpEvents.amount)
           .as("liquidity"),
+        token0Held:
+          sql<number>`(sum(${lpEventsForPool.liqAmt}) * POW(2,96)) * (${lpEventsForPool.sqrtPriceX96Upper} - ${poolTicks.sqrtPriceX96}) / (${lpEventsForPool.sqrtPriceX96Upper} * ${poolTicks.sqrtPriceX96}) / POW(10,${poolTicks.token0Decimals})`.as(
+            "token0Held"
+          ),
+        token1Held:
+          sql<number>`sum(${lpEventsForPool.liqAmt}) * (${poolTicks.sqrtPriceX96} - ${lpEventsForPool.sqrtPriceX96Lower}) / POW(2,96) / POW(10,${poolTicks.token1Decimals})`.as(
+            "token1Held"
+          ),
         tickLower: lpEventsForPool.tickLower,
         tickUpper: lpEventsForPool.tickUpper,
         tokenId: lpEventsForPool.tokenId,
@@ -144,17 +161,31 @@ app.get("/lp-snapshot", async (c) => {
           sql`coalesce(${latestOwners.owner}, ${lpEventsForPool.owner})`
             .mapWith(latestOwners.owner)
             .as("positionOwner"),
+        token0: poolTicks.token0,
+        token1: poolTicks.token1,
       })
       .from(lpEventsForPool)
       .leftJoin(latestOwners, eq(lpEventsForPool.tokenId, latestOwners.tokenId))
-      .groupBy(sql`2,3,4,5`)
+      .rightJoin(
+        poolTicks,
+        eq(sql`1`.mapWith(poolTicks.tick), sql`1`.mapWith(poolTicks.tick))
+      )
+      .groupBy(
+        sql`4,5,6,7,8,9`,
+        poolTicks.tick,
+        lpEventsForPool.sqrtPriceX96Lower,
+        lpEventsForPool.sqrtPriceX96Upper,
+        poolTicks.sqrtPriceX96,
+        poolTicks.token0Decimals,
+        poolTicks.token1Decimals
+      )
       .having(
         sql<boolean>`sum(${lpEventsForPool.liqAmt}) > 0 and coalesce(${latestOwners.owner}, ${lpEventsForPool.owner}) != ${zeroAddress}`
       )
       .orderBy(
         sql`sum(${lpEventsForPool.liqAmt}) desc`.mapWith(lpEvents.amount)
       );
-    
+
     const res = await result;
 
     return Response.json({
