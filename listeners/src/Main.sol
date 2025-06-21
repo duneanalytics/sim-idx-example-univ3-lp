@@ -6,6 +6,8 @@ import "sim-idx-generated/Generated.sol";
 import {IUniswapV3Pool} from "./interfaces/IUniswapV3Pool.sol";
 import {INonfungiblePositionManager} from "./interfaces/INonfungiblePositionManager.sol";
 import {IUniswapV3Factory} from "./interfaces/IUniswapV3Factory.sol";
+import {IERC20} from "./interfaces/IERC20.sol";
+import {TickMath} from "./libs/TickMath.sol";
 
 struct LpEvent {
     bytes32 txn_hash;
@@ -16,7 +18,9 @@ struct LpEvent {
     address owner;
     uint256 amount;
     int64 tick_lower;
+    uint256 sqrt_price_x96_lower;
     int64 tick_upper;
+    uint256 sqrt_price_x96_upper;
     uint256 token_id;
 }
 
@@ -26,6 +30,11 @@ struct PoolTick {
     uint256 block_timestamp;
     address pool;
     int64 tick;
+    uint256 sqrt_price_x96;
+    address token0;
+    address token1;
+    uint64 token0_decimals;
+    uint64 token1_decimals;
 }
 
 contract Triggers is BaseTriggers {
@@ -92,7 +101,12 @@ contract Listener is
         uint256 block_number, 
         uint256 block_timestamp, 
         address pool, 
-        int64 tick
+        int64 tick,
+        uint256 sqrt_price_x96,
+        address token0,
+        address token1,
+        uint64 token0_decimals,
+        uint64 token1_decimals
     );
     /// Event to track changes in liquidity of positions
     event LpEvents(
@@ -104,7 +118,9 @@ contract Listener is
         address owner,
         uint256 amount,
         int64 tick_lower,
+        uint256 sqrt_price_x96_lower,
         int64 tick_upper,
+        uint256 sqrt_price_x96_upper,
         uint256 token_id
     );
 
@@ -125,7 +141,9 @@ contract Listener is
                     owner: inputs.owner,
                     amount: inputs.amount,
                     tick_lower: inputs.tickLower,
+                    sqrt_price_x96_lower: TickMath.getSqrtPriceAtTick(inputs.tickLower),
                     tick_upper: inputs.tickUpper,
+                    sqrt_price_x96_upper: TickMath.getSqrtPriceAtTick(inputs.tickUpper),
                     token_id: 0
                 });
             } else {
@@ -138,7 +156,9 @@ contract Listener is
                     inputs.owner,
                     inputs.amount,
                     inputs.tickLower,
+                    TickMath.getSqrtPriceAtTick(inputs.tickLower),
                     inputs.tickUpper,
+                    TickMath.getSqrtPriceAtTick(inputs.tickUpper),
                     0
                 );
             }
@@ -159,7 +179,9 @@ contract Listener is
                     owner: inputs.owner,
                     amount: inputs.amount,
                     tick_lower: inputs.tickLower,
+                    sqrt_price_x96_lower: TickMath.getSqrtPriceAtTick(inputs.tickLower),
                     tick_upper: inputs.tickUpper,
+                    sqrt_price_x96_upper: TickMath.getSqrtPriceAtTick(inputs.tickUpper),
                     token_id: 0
                 });
             } else {
@@ -172,7 +194,9 @@ contract Listener is
                     inputs.owner,
                     inputs.amount,
                     inputs.tickLower,
+                    TickMath.getSqrtPriceAtTick(inputs.tickLower),
                     inputs.tickUpper,
+                    TickMath.getSqrtPriceAtTick(inputs.tickUpper),
                     0
                 );
             }
@@ -184,12 +208,20 @@ contract Listener is
             if (poolTicks[ctx.txn.call.callee].txn_hash != bytes32(0)) {
                 visitedPools.push(ctx.txn.call.callee);
             }
+            (uint160 sqrtPriceX96, , , , , , ) = IUniswapV3Pool(ctx.txn.call.callee).slot0();
+            address token0 = IUniswapV3Pool(ctx.txn.call.callee).token0();
+            address token1 = IUniswapV3Pool(ctx.txn.call.callee).token1();
             poolTicks[ctx.txn.call.callee] = PoolTick({
                 txn_hash: ctx.txn.hash,
                 block_number: block.number,
                 block_timestamp: block.timestamp,
                 pool: ctx.txn.call.callee,
-                tick: inputs.tick
+                tick: inputs.tick,
+                sqrt_price_x96: sqrtPriceX96,
+                token0: token0,
+                token1: token1,
+                token0_decimals: IERC20(token0).decimals(),
+                token1_decimals: IERC20(token1).decimals()
             });
         }
     }
@@ -237,7 +269,9 @@ contract Listener is
             latestPosition.owner,
             latestPosition.amount,
             latestPosition.tick_lower,
+            latestPosition.sqrt_price_x96_lower,
             latestPosition.tick_upper,
+            latestPosition.sqrt_price_x96_upper,
             latestPosition.token_id
         );
     }
@@ -257,7 +291,9 @@ contract Listener is
             latestPosition.owner,
             latestPosition.amount,
             latestPosition.tick_lower,
+            latestPosition.sqrt_price_x96_lower,
             latestPosition.tick_upper,
+            latestPosition.sqrt_price_x96_upper,
             latestPosition.token_id
         );
     }
@@ -265,12 +301,18 @@ contract Listener is
     function onBlock(RawBlockContext memory ctx) external override {
         for (uint256 i = visitedPools.length; i > 0; i--) {
             address pool = visitedPools[i - 1];
+            
             emit PoolTicksPerBlock(
                 poolTicks[pool].txn_hash,
                 poolTicks[pool].block_number,
                 poolTicks[pool].block_timestamp,
                 pool,
-                poolTicks[pool].tick
+                poolTicks[pool].tick,
+                poolTicks[pool].sqrt_price_x96,
+                poolTicks[pool].token0,
+                poolTicks[pool].token1,
+                poolTicks[pool].token0_decimals,
+                poolTicks[pool].token1_decimals
             );
         }
     }
