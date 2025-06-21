@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uniswap V3 LP Snapshot</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .results {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #007bff;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+        .loading {
+            text-align: center;
+            color: #666;
+        }
+        pre {
+            background: #f1f1f1;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        .help-text {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🦄 Uniswap V3 LP Snapshot</h1>
+        <form id="lpForm">
+            <div class="form-group">
+                <label for="pool">Pool Address</label>
+                <input 
+                    type="text" 
+                    id="pool" 
+                    name="pool" 
+                    placeholder="Enter pool address (40 hex characters)"
+                    pattern="[0-9a-fA-F]{40}"
+                    value="5777d92f208679DB4b9778590Fa3CAB3aC9e2168"
+                    required
+                >
+                <div class="help-text">20-byte address without 0x prefix.</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="block_number">Block Number</label>
+                <input 
+                    type="number" 
+                    id="block_number" 
+                    name="block_number" 
+                    placeholder="Enter block number"
+                    value="22754816"
+                    min="1"
+                    required
+                >
+                <div class="help-text">The block number to query the snapshot at</div>
+            </div>
+            
+            <button type="submit" id="submitBtn">Get LP Snapshot</button>
+        </form>
+        
+        <div id="results" style="display: none;"></div>
+    </div>
+
+    <script>
+        document.getElementById('lpForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const pool = document.getElementById('pool').value.trim();
+            const blockNumber = document.getElementById('block_number').value.trim();
+            const submitBtn = document.getElementById('submitBtn');
+            const results = document.getElementById('results');
+            
+            // Validate pool address
+            if (!/^[0-9a-fA-F]{40}$/.test(pool)) {
+                showError('Pool address must be exactly 40 hex characters');
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Loading...';
+            results.style.display = 'block';
+            results.innerHTML = '<div class="loading">Fetching LP snapshot...</div>';
+            
+            try {
+                const response = await fetch(`/lp-snapshot?pool=${pool}&block_number=${blockNumber}`);
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.error || 'Request failed');
+                }
+                
+                showResults(data);
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Get LP Snapshot';
+            }
+        });
+        
+        function showResults(data) {
+            const results = document.getElementById('results');
+            results.className = 'results';
+            results.innerHTML = `
+                <h3>LP Snapshot Results</h3>
+                <p><strong>Found ${data.result.length} active positions</strong></p>
+                <pre>${JSON.stringify(data, null, 2)}</pre>
+            `;
+        }
+        
+        function showError(message) {
+            const results = document.getElementById('results');
+            results.className = 'results error';
+            results.innerHTML = `
+                <h3>Error</h3>
+                <p>${message}</p>
+            `;
+        }
+    </script>
+</body>
+</html> 

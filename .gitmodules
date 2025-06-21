@@ -1,0 +1,6 @@
+[submodule "listeners/lib/forge-std"]
+	path = listeners/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "listeners/lib/sim-idx-sol"]
+	path = listeners/lib/sim-idx-sol
+	url = https://github.com/duneanalytics/sim-idx-sol
