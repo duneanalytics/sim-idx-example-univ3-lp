@@ -27,7 +27,12 @@ We define the following events in our `Listener.sol`:
         uint256 block_number, 
         uint256 block_timestamp, 
         address pool, 
-        int64 tick
+        int64 tick,
+        uint256 sqrt_price_x96,
+        address token0,
+        address token1,
+        uint64 token0_decimals,
+        uint64 token1_decimals
     );
     /// Event to track changes in liquidity of positions
     event LpEvents(
@@ -39,7 +44,9 @@ We define the following events in our `Listener.sol`:
         address owner,
         uint256 amount,
         int64 tick_lower,
+        uint256 sqrt_price_x96_lower,
         int64 tick_upper,
+        uint256 sqrt_price_x96_upper,
         uint256 token_id
     );
 ```
@@ -52,6 +59,10 @@ We use the `Transfer` trigger in order to keep track of the ownership of positio
 In addition, `Swap` events are used in order to keep track of the latest ticks for pools. We save those in the ephemeral state too as we need them to be emitted with a block-level granularity.
 Finally, inside our block trigger, we emit all saved LP events and the pool ticks we've collected.
 
+We make use of two unique features of Sim IDX in our listener:
+ - `TickMath.getSqrtPriceAtTick` - we've imported the full `TickMath.sol` library off of the Uniswap V4. This allows us to calculate the `sqrtPriceRatioX96_lower` and `sqrtPriceRatioX96_upper` that corresponds to any position's lower and upper ticks. We then augment our LP events with that information to avoid doing the calculations in SQL or TypeScript.
+ - `(uint160 sqrtPriceX96, , , , , , ) = IUniswapV3Pool(ctx.txn.call.callee).slot0();` - We use our listener's ability to access state at the time of handling triggers, this allows us to augment our `PoolTicksPerBlock` with the `sqrtPriceX96` which isn't available in the pools' `Swap` event.
+
 ## Querying Methodology
 
 The `/lp-snapshot` endpoint queries the 3 tables in our DB to determine in-range liquidity positions at a specific block number. The query executes in four main steps:
@@ -59,7 +70,7 @@ The `/lp-snapshot` endpoint queries the 3 tables in our DB to determine in-range
 ### 1. Pool Tick Discovery
 First, we retrieve the latest tick for the specified pool at or before the target block number:
 ```sql
-SELECT block_number, tick 
+SELECT block_number, tick, sqrtPriceX96, token0, token1, token0Decimals, token1Decimals
 FROM pool_ticks_per_block 
 WHERE pool = $pool AND block_number <= $block_number 
 ORDER BY block_number DESC 
@@ -81,54 +92,47 @@ To determine the current owner of each position, we track ownership changes thro
 ### 4. Liquidity Aggregation and Filtering
 Finally, we aggregate liquidity by position and apply filters:
 - Sum liquidity amounts per position (token_id, tick_lower, tick_upper)
+- Calculate the token0 and token1 holdings by $`x = L\frac{\sqrt{P}-\sqrt{P_b}}{\sqrt{P}*\sqrt{P_b}}`$ and $`y = L(\sqrt{P}-\sqrt{P_a})`$ where $`x`$ is the `token0` holding of the position and $`y`$ is the `token1` holding of the positions (excluding any accrued fees).
 - Use the latest owner from step 3, falling back to the original LP event owner
 - Filter out positions with zero or negative liquidity
 - Exclude positions owned by the zero address
 - Order results by liquidity amount (descending)
 
-### Key Features
-- **Historical Accuracy**: Queries reflect the exact state at any given block number
-- **Ownership Tracking**: Properly handles NFT position transfers between addresses  
-- **In-Range Filtering**: Only returns positions that were actively providing liquidity at the target block
-- **Burn Event Handling**: Correctly processes liquidity removal events as negative amounts
 
 This methodology ensures accurate snapshots of active liquidity provision at any point in time, accounting for the dynamic nature of Uniswap V3 positions.
 
 ## Exposed API
 
 We expose the following API:
-`/lp-snapshot?pool=88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640&block_number=22724487`
+`/lp-snapshot?pool=5777d92f208679DB4b9778590Fa3CAB3aC9e2168&block_number=23753712`
 
 This will then output a list of the in-range LPs:
 ```json
 {
-  "result": {
-    "command": "SELECT",
-    "rowCount": 3,
-    "rows": [
+  "result": [    
       {
-        "liquidity": "12244203218792096471",
-        "tick_lower": "197870",
-        "tick_upper": "197880",
-        "token_id": "101296",
-        "positionOwner": "fa73235bcd46121711930be3be734b5e41cbcce1"
+        "liquidity": "285882538055745050066296",
+        "token0Held": 26845832.2898499,
+        "token1Held": 30324973.4259972,
+        "tickLower": "-276326",
+        "tickUpper": "-276322",
+        "tokenId": "0",
+        "positionOwner": "0x50379f632ca68d36e50cfbc8f78fe16bd1499d1e",
+        "token0": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "token1": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
       },
       {
-        "liquidity": "10827420034540291866",
-        "tick_lower": "196860",
-        "tick_upper": "199870",
-        "token_id": "196903",
-        "positionOwner": "ecaa8f3636270ee917c5b08d6324722c2c4951c7"
-      },
-      {
-        "liquidity": "2474274880955151222",
-        "tick_lower": "197870",
-        "tick_upper": "198070",
-        "token_id": "0",
-        "positionOwner": "8aff5ca996f77487a4f04f1ce905bf3d27455580"
+        "liquidity": "180912980957391541890",
+        "token0Held": 16988.6540775426,
+        "token1Held": 19190.3338247301,
+        "tickLower": "-276326",
+        "tickUpper": "-276322",
+        "tokenId": "160967",
+        "positionOwner": "0x96bcc2eb087633a7d434ac332ae436335f32989e",
+        "token0": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "token1": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
       }
     ]
-  }
 }
 ```
 
