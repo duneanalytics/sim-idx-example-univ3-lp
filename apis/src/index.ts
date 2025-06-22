@@ -14,6 +14,7 @@ const Uint = simTypes.Uint;
 
 type Bindings = {
   DB_CONNECTION_STRING: string;
+  ASSETS: any; // Cloudflare Worker's asset fetcher
 };
 
 let dbClient: ReturnType<typeof drizzle>;
@@ -21,6 +22,22 @@ let dbClient: ReturnType<typeof drizzle>;
 const zeroAddress = Address.from("0000000000000000000000000000000000000000");
 
 const app = new Hono<{ Bindings: Bindings }>();
+
+app.get("/", async (c) => {
+  try {
+    const response = await c.env.ASSETS.fetch(new Request("https://example.com/index.html"));
+    
+    if (!response.ok) {
+      return c.text("HTML template not found", 404);
+    }
+    
+    const html = await response.text();
+    return c.html(html);
+  } catch (error) {
+    console.error("Failed to fetch HTML template:", error);
+    return c.text("Internal Server Error", 500);
+  }
+});
 
 app.get("/lp-snapshot", async (c) => {
   try {
