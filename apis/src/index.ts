@@ -25,7 +25,9 @@ const app = new Hono<{ Bindings: Bindings }>();
 
 app.get("/", async (c) => {
   try {
-    const response = await c.env.ASSETS.fetch(new Request("https://example.com/index.html"));
+    // Create a request for the static asset using the same origin
+    const url = new URL("/index.html", c.req.url);
+    const response = await c.env.ASSETS.fetch(url.toString());
     
     if (!response.ok) {
       return c.text("HTML template not found", 404);
