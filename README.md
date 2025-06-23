@@ -4,12 +4,12 @@ This app will index liquidity provision events on Uniswap V3 pools and expose an
 
 ## Indexing Methodology
 
-We use a `Listener.sol` file that does the following:
+We use a `Main.sol` file that does the following:
 - Triggers on every `Burn`, `Mint` or `Swap` event on all Uniswap V3 pools using a set of ABI Triggers.
 - Triggers on the `Transfer`, `IncreaseLiquidity` and `DecreaseLiquidity` events on the `NFTPositionManager` contract.
 - Has a block trigger.
 
-We define the following events in our `Listener.sol`:
+We define the following events in our `Main.sol`:
 ```solidity
     /// Event to index the ownership changes of a positions in the NFTPositionManager.
     event PositionOwnerChanges(
