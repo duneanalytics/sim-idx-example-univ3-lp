@@ -5,6 +5,42 @@ This app will index liquidity provision events on Uniswap V3 pools and expose an
 To use this template you need to follow the steps in the Sim IDX [quickstart](https://docs.sim.dune.com/idx) but initialize with : 
 `sim init --template=univ3-lp`
 
+## Exposed API
+
+We expose the following API:
+`/lp-snapshot?pool=5777d92f208679DB4b9778590Fa3CAB3aC9e2168&block_number=23753712`
+
+This will then output a list of the in-range LPs:
+```json
+{
+  "result": [    
+      {
+        "liquidity": "285882538055745050066296",
+        "token0Held": 26845832.2898499,
+        "token1Held": 30324973.4259972,
+        "tickLower": "-276326",
+        "tickUpper": "-276322",
+        "tokenId": "0",
+        "positionOwner": "0x50379f632ca68d36e50cfbc8f78fe16bd1499d1e",
+        "token0": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "token1": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+      },
+      {
+        "liquidity": "180912980957391541890",
+        "token0Held": 16988.6540775426,
+        "token1Held": 19190.3338247301,
+        "tickLower": "-276326",
+        "tickUpper": "-276322",
+        "tokenId": "160967",
+        "positionOwner": "0x96bcc2eb087633a7d434ac332ae436335f32989e",
+        "token0": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "token1": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+      }
+    ]
+}
+```
+
+Where `token_id = 0` indicates a position that was not created via the `NFTPositionManager` contract, but directly via interacting with the pool.
 
 ## Indexing Methodology
 
@@ -82,7 +118,8 @@ LIMIT 1
 ```
 
 ### 2. In-Range LP Events Filtering
-We then identify all liquidity provision events (Mint/Burn) for positions that were in-range at the target block:
+We then identify all liquidity provision events (Mint/Burn) for positions that were in-range at the target block.
+We build the different positions of the pool incrementally in the following way:
 - Filter LP events by pool and block number (≤ target block)
 - Only include positions where `tick_lower ≤ current_tick < tick_upper`
 - Convert Burn events to negative liquidity amounts for proper aggregation
@@ -104,41 +141,4 @@ Finally, we aggregate liquidity by position and apply filters:
 
 
 This methodology ensures accurate snapshots of active liquidity provision at any point in time, accounting for the dynamic nature of Uniswap V3 positions.
-
-## Exposed API
-
-We expose the following API:
-`/lp-snapshot?pool=5777d92f208679DB4b9778590Fa3CAB3aC9e2168&block_number=23753712`
-
-This will then output a list of the in-range LPs:
-```json
-{
-  "result": [    
-      {
-        "liquidity": "285882538055745050066296",
-        "token0Held": 26845832.2898499,
-        "token1Held": 30324973.4259972,
-        "tickLower": "-276326",
-        "tickUpper": "-276322",
-        "tokenId": "0",
-        "positionOwner": "0x50379f632ca68d36e50cfbc8f78fe16bd1499d1e",
-        "token0": "0x6b175474e89094c44da98b954eedeac495271d0f",
-        "token1": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
-      },
-      {
-        "liquidity": "180912980957391541890",
-        "token0Held": 16988.6540775426,
-        "token1Held": 19190.3338247301,
-        "tickLower": "-276326",
-        "tickUpper": "-276322",
-        "tokenId": "160967",
-        "positionOwner": "0x96bcc2eb087633a7d434ac332ae436335f32989e",
-        "token0": "0x6b175474e89094c44da98b954eedeac495271d0f",
-        "token1": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
-      }
-    ]
-}
-```
-
-Where `token_id = 0` indicates a position that was not created via the `NFTPositionManager` contract, but directly via interacting with the pool.
 
