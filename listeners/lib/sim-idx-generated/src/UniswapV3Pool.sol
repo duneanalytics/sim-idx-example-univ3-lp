@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import "lib/sim-idx-sol/src/Dsl.sol";
+import "lib/sim-idx-sol/src/Triggers.sol";
 import "lib/sim-idx-sol/src/Context.sol";
 
 function UniswapV3Pool$Abi() pure returns (Abi memory) {
