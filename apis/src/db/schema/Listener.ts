@@ -1,42 +1,42 @@
 
-import { pgEnum, pgTable as table } from "drizzle-orm/pg-core";
+import { pgTable as table } from "drizzle-orm/pg-core";
 import * as t from "drizzle-orm/pg-core";
-import { simDb, simTypes } from "sim-idx";
+import { db } from "sim-idx";
 
 export const lpEvents = table("lp_events", {
-  txnHash: simDb.bytes32('txn_hash'),
-  blockNumber: simDb.uint256('block_number'),
-  blockTimestamp: simDb.uint256('block_timestamp'),
-  pool: simDb.address('pool'),
+  txnHash: db.bytes32('txn_hash'),
+  blockNumber: db.uint256('block_number'),
+  blockTimestamp: db.uint256('block_timestamp'),
+  pool: db.address('pool'),
   eventType: t.text('event_type'),
-  owner: simDb.address('owner'),
-  amount: simDb.uint256('amount'),
-  tickLower: simDb.int64('tick_lower'),
-  sqrtPriceX96Lower: simDb.uint256('sqrt_price_x96_lower'),
-  tickUpper: simDb.int64('tick_upper'),
-  sqrtPriceX96Upper: simDb.uint256('sqrt_price_x96_upper'),
-  tokenId: simDb.uint256('token_id'),
+  owner: db.address('owner'),
+  amount: db.uint256('amount'),
+  tickLower: db.int64('tick_lower'),
+  sqrtPriceX96Lower: db.uint256('sqrt_price_x96_lower'),
+  tickUpper: db.int64('tick_upper'),
+  sqrtPriceX96Upper: db.uint256('sqrt_price_x96_upper'),
+  tokenId: db.uint256('token_id'),
 })
 
 export const poolTicksPerBlock = table("pool_ticks_per_block", {
-  txnHash: simDb.bytes32('txn_hash'),
-  blockNumber: simDb.uint256('block_number'),
-  blockTimestamp: simDb.uint256('block_timestamp'),
-  pool: simDb.address('pool'),
-  tick: simDb.int64('tick'),
-  sqrtPriceX96: simDb.uint256('sqrt_price_x96'),
-  token0: simDb.address('token0'),
-  token1: simDb.address('token1'),
-  token0Decimals: simDb.uint64('token0_decimals'),
-  token1Decimals: simDb.uint64('token1_decimals'),
+  txnHash: db.bytes32('txn_hash'),
+  blockNumber: db.uint256('block_number'),
+  blockTimestamp: db.uint256('block_timestamp'),
+  pool: db.address('pool'),
+  tick: db.int64('tick'),
+  sqrtPriceX96: db.uint256('sqrt_price_x96'),
+  token0: db.address('token0'),
+  token1: db.address('token1'),
+  token0Decimals: db.uint64('token0_decimals'),
+  token1Decimals: db.uint64('token1_decimals'),
 })
 
 export const positionOwnerChanges = table("position_owner_changes", {
-  txnHash: simDb.bytes32('txn_hash'),
-  blockNumber: simDb.uint256('block_number'),
-  blockTimestamp: simDb.uint256('block_timestamp'),
-  fromAddress: simDb.address('from_address'),
-  toAddress: simDb.address('to_address'),
-  tokenId: simDb.uint256('token_id'),
-  pool: simDb.address('pool'),
+  txnHash: db.bytes32('txn_hash'),
+  blockNumber: db.uint256('block_number'),
+  blockTimestamp: db.uint256('block_timestamp'),
+  fromAddress: db.address('from_address'),
+  toAddress: db.address('to_address'),
+  tokenId: db.uint256('token_id'),
+  pool: db.address('pool'),
 })

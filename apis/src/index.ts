@@ -1,27 +1,20 @@
-import { Hono } from "hono";
-import { drizzle } from "drizzle-orm/neon-http";
 import { desc, eq, and, lte, sql, gt, ne } from "drizzle-orm";
-import { PgDialect } from "drizzle-orm/pg-core";
 import {
   lpEvents,
   poolTicksPerBlock,
   positionOwnerChanges,
 } from "./db/schema/Listener"; // Adjust the import path as necessary
-import { simDb, simTypes } from "sim-idx";
+import {types, App, db} from "sim-idx";
 
-const Address = simTypes.Address;
-const Uint = simTypes.Uint;
-
-type Bindings = {
-  DB_CONNECTION_STRING: string;
-  ASSETS: any; // Cloudflare Worker's asset fetcher
-};
-
-let dbClient: ReturnType<typeof drizzle>;
+const Address = types.Address;
+const Uint = types.Uint;
 
 const zeroAddress = Address.from("0000000000000000000000000000000000000000");
 
-const app = new Hono<{ Bindings: Bindings }>();
+const app = App.create<{
+    DB_CONNECTION_STRING: string; // Database connection string
+    ASSETS: any; // Cloudflare Worker's asset fetcher
+}>()
 
 app.get("/", async (c) => {
   try {
@@ -75,7 +68,7 @@ app.get("/lp-snapshot", async (c) => {
     const pool = Address.from(poolParam);
     const blockNumber = parseInt(blockNumberParam, 10);
 
-    const client = await getDBClient(c.env);
+    const client = db.client(c)
 
     const poolTicks = client
       .select({
@@ -216,20 +209,5 @@ app.get("/lp-snapshot", async (c) => {
     return Response.json({ error: (e as Error).message }, { status: 500 });
   }
 });
-
-// Lazily initializes and returns a shared, connected dbClient instance.
-async function getDBClient(env: Bindings) {
-  if (!env.DB_CONNECTION_STRING) {
-    throw new Error(
-      "Missing required environment variable: DB_CONNECTION_STRING"
-    );
-  }
-
-  if (!dbClient) {
-    dbClient = drizzle(env.DB_CONNECTION_STRING);
-  }
-
-  return dbClient;
-}
 
 export default app;
