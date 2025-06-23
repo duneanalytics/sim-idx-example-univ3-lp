@@ -1,7 +1,10 @@
 # Uniswap V3 In-Range LPs
 
 This app will index liquidity provision events on Uniswap V3 pools and expose an endpoint which can be used in order to query the in-range positions of a specific pool at every given block.
-To use this template you need to follow the steps in the Sim IDX [quickstart](https://docs.sim.dune.com/idx) but run init with 'sim init --template=univ3-lp'
+
+To use this template you need to follow the steps in the Sim IDX [quickstart](https://docs.sim.dune.com/idx) but initialize with : 
+`sim init --template=univ3-lp`
+
 
 ## Indexing Methodology
 
