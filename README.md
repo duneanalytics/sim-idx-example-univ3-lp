@@ -1,6 +1,6 @@
 # Uniswap V3 In-Range LPs
 
-This app will index liquidity provision events on Uniswap V3 pools and expose an endpoint which can be used in order to query the in-range positions on a specific pools at every given block.
+This app will index liquidity provision events on Uniswap V3 pools and expose an endpoint which can be used in order to query the in-range positions of a specific pool at every given block.
 
 ## Indexing Methodology
 
