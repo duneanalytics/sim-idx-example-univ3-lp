@@ -1,7 +1,8 @@
 
-import { pgTable as table } from "drizzle-orm/pg-core";
+// Generated file. Do not edit manually.
+import { pgEnum, pgTable as table } from "drizzle-orm/pg-core";
 import * as t from "drizzle-orm/pg-core";
-import { db } from "sim-idx";
+import { db, types } from "sim-idx";
 
 export const lpEvents = table("lp_events", {
   txnHash: db.bytes32('txn_hash'),
