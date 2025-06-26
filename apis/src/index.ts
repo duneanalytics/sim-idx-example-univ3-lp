@@ -4,7 +4,7 @@ import {
   poolTicksPerBlock,
   positionOwnerChanges,
 } from "./db/schema/Listener"; // Adjust the import path as necessary
-import {types, App, db} from "sim-idx";
+import {types, App, db} from "@duneanalytics/sim-idx";
 
 const Address = types.Address;
 const Uint = types.Uint;

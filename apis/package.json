@@ -6,9 +6,8 @@
     "dev": "wrangler dev"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^1.0.0",
-    "drizzle-orm": "^0.44.1",
-    "sim-idx": "git+https://github.com/duneanalytics/sim-idx-ts#main"
+    "@duneanalytics/sim-idx": "^1.0.1",
+    "drizzle-orm": "^0.44.1"
   },
   "devDependencies": {
     "drizzle-kit": "^0.31.1",
