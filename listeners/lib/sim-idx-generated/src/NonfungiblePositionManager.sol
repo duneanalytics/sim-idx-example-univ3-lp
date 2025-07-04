@@ -7,15 +7,15 @@ import "lib/sim-idx-sol/src/Context.sol";
 function NonfungiblePositionManager$Abi() pure returns (Abi memory) {
     return Abi("NonfungiblePositionManager");
 }
-struct NonfungiblePositionManager$DOMAIN_SEPARATORFunctionOutputs {
+struct NonfungiblePositionManager$domainSeparatorFunctionOutputs {
     bytes32 outArg0;
 }
 
-struct NonfungiblePositionManager$PERMIT_TYPEHASHFunctionOutputs {
+struct NonfungiblePositionManager$permitTypehashFunctionOutputs {
     bytes32 outArg0;
 }
 
-struct NonfungiblePositionManager$WETH9FunctionOutputs {
+struct NonfungiblePositionManager$weth9FunctionOutputs {
     address outArg0;
 }
 
@@ -32,7 +32,7 @@ struct NonfungiblePositionManager$balanceOfFunctionOutputs {
     uint256 outArg0;
 }
 
-struct NonfungiblePositionManager$baseURIFunctionOutputs {
+struct NonfungiblePositionManager$baseUriFunctionOutputs {
     string outArg0;
 }
 
@@ -279,11 +279,11 @@ struct NonfungiblePositionManager$tokenOfOwnerByIndexFunctionOutputs {
     uint256 outArg0;
 }
 
-struct NonfungiblePositionManager$tokenURIFunctionInputs {
+struct NonfungiblePositionManager$tokenUriFunctionInputs {
     uint256 tokenId;
 }
 
-struct NonfungiblePositionManager$tokenURIFunctionOutputs {
+struct NonfungiblePositionManager$tokenUriFunctionOutputs {
     string outArg0;
 }
 
@@ -303,7 +303,7 @@ struct NonfungiblePositionManager$uniswapV3MintCallbackFunctionInputs {
     bytes data;
 }
 
-struct NonfungiblePositionManager$unwrapWETH9FunctionInputs {
+struct NonfungiblePositionManager$unwrapWeth9FunctionInputs {
     uint256 amountMinimum;
     address recipient;
 }
@@ -432,7 +432,7 @@ abstract contract NonfungiblePositionManager$OnTransferEvent {
 }
 
 abstract contract NonfungiblePositionManager$OnDomainSeparatorFunction {
-    function onDomainSeparatorFunction(FunctionContext memory ctx, NonfungiblePositionManager$DOMAIN_SEPARATORFunctionOutputs memory outputs) virtual external;
+    function onDomainSeparatorFunction(FunctionContext memory ctx, NonfungiblePositionManager$domainSeparatorFunctionOutputs memory outputs) virtual external;
 
     function triggerOnDomainSeparatorFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -445,8 +445,22 @@ abstract contract NonfungiblePositionManager$OnDomainSeparatorFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PreDomainSeparatorFunction {
+    function preDomainSeparatorFunction(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreDomainSeparatorFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x3644e515),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preDomainSeparatorFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnPermitTypehashFunction {
-    function onPermitTypehashFunction(FunctionContext memory ctx, NonfungiblePositionManager$PERMIT_TYPEHASHFunctionOutputs memory outputs) virtual external;
+    function onPermitTypehashFunction(FunctionContext memory ctx, NonfungiblePositionManager$permitTypehashFunctionOutputs memory outputs) virtual external;
 
     function triggerOnPermitTypehashFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -459,8 +473,22 @@ abstract contract NonfungiblePositionManager$OnPermitTypehashFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PrePermitTypehashFunction {
+    function prePermitTypehashFunction(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPrePermitTypehashFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x30adf81f),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.prePermitTypehashFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnWeth9Function {
-    function onWeth9Function(FunctionContext memory ctx, NonfungiblePositionManager$WETH9FunctionOutputs memory outputs) virtual external;
+    function onWeth9Function(FunctionContext memory ctx, NonfungiblePositionManager$weth9FunctionOutputs memory outputs) virtual external;
 
     function triggerOnWeth9Function() view external returns (Trigger memory) {
         return Trigger({
@@ -469,6 +497,20 @@ abstract contract NonfungiblePositionManager$OnWeth9Function {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onWeth9Function.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PreWeth9Function {
+    function preWeth9Function(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreWeth9Function() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x4aa4a4fc),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preWeth9Function.selector
         });
     }
 }
@@ -487,6 +529,20 @@ abstract contract NonfungiblePositionManager$OnApproveFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PreApproveFunction {
+    function preApproveFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$approveFunctionInputs memory inputs) virtual external;
+
+    function triggerPreApproveFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x095ea7b3),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preApproveFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnBalanceOfFunction {
     function onBalanceOfFunction(FunctionContext memory ctx, NonfungiblePositionManager$balanceOfFunctionInputs memory inputs, NonfungiblePositionManager$balanceOfFunctionOutputs memory outputs) virtual external;
 
@@ -501,8 +557,22 @@ abstract contract NonfungiblePositionManager$OnBalanceOfFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PreBalanceOfFunction {
+    function preBalanceOfFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$balanceOfFunctionInputs memory inputs) virtual external;
+
+    function triggerPreBalanceOfFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x70a08231),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preBalanceOfFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnBaseUriFunction {
-    function onBaseUriFunction(FunctionContext memory ctx, NonfungiblePositionManager$baseURIFunctionOutputs memory outputs) virtual external;
+    function onBaseUriFunction(FunctionContext memory ctx, NonfungiblePositionManager$baseUriFunctionOutputs memory outputs) virtual external;
 
     function triggerOnBaseUriFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -511,6 +581,20 @@ abstract contract NonfungiblePositionManager$OnBaseUriFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onBaseUriFunction.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PreBaseUriFunction {
+    function preBaseUriFunction(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreBaseUriFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x6c0360eb),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preBaseUriFunction.selector
         });
     }
 }
@@ -529,6 +613,20 @@ abstract contract NonfungiblePositionManager$OnBurnFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PreBurnFunction {
+    function preBurnFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$burnFunctionInputs memory inputs) virtual external;
+
+    function triggerPreBurnFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x42966c68),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preBurnFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnCollectFunction {
     function onCollectFunction(FunctionContext memory ctx, NonfungiblePositionManager$collectFunctionInputs memory inputs, NonfungiblePositionManager$collectFunctionOutputs memory outputs) virtual external;
 
@@ -539,6 +637,20 @@ abstract contract NonfungiblePositionManager$OnCollectFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onCollectFunction.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PreCollectFunction {
+    function preCollectFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$collectFunctionInputs memory inputs) virtual external;
+
+    function triggerPreCollectFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0xfc6f7865),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preCollectFunction.selector
         });
     }
 }
@@ -557,6 +669,20 @@ abstract contract NonfungiblePositionManager$OnCreateAndInitializePoolIfNecessar
     }
 }
 
+abstract contract NonfungiblePositionManager$PreCreateAndInitializePoolIfNecessaryFunction {
+    function preCreateAndInitializePoolIfNecessaryFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$createAndInitializePoolIfNecessaryFunctionInputs memory inputs) virtual external;
+
+    function triggerPreCreateAndInitializePoolIfNecessaryFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x13ead562),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preCreateAndInitializePoolIfNecessaryFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnDecreaseLiquidityFunction {
     function onDecreaseLiquidityFunction(FunctionContext memory ctx, NonfungiblePositionManager$decreaseLiquidityFunctionInputs memory inputs, NonfungiblePositionManager$decreaseLiquidityFunctionOutputs memory outputs) virtual external;
 
@@ -567,6 +693,20 @@ abstract contract NonfungiblePositionManager$OnDecreaseLiquidityFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onDecreaseLiquidityFunction.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PreDecreaseLiquidityFunction {
+    function preDecreaseLiquidityFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$decreaseLiquidityFunctionInputs memory inputs) virtual external;
+
+    function triggerPreDecreaseLiquidityFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x0c49ccbe),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preDecreaseLiquidityFunction.selector
         });
     }
 }
@@ -585,6 +725,20 @@ abstract contract NonfungiblePositionManager$OnFactoryFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PreFactoryFunction {
+    function preFactoryFunction(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreFactoryFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0xc45a0155),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preFactoryFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnGetApprovedFunction {
     function onGetApprovedFunction(FunctionContext memory ctx, NonfungiblePositionManager$getApprovedFunctionInputs memory inputs, NonfungiblePositionManager$getApprovedFunctionOutputs memory outputs) virtual external;
 
@@ -595,6 +749,20 @@ abstract contract NonfungiblePositionManager$OnGetApprovedFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onGetApprovedFunction.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PreGetApprovedFunction {
+    function preGetApprovedFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$getApprovedFunctionInputs memory inputs) virtual external;
+
+    function triggerPreGetApprovedFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x081812fc),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preGetApprovedFunction.selector
         });
     }
 }
@@ -613,6 +781,20 @@ abstract contract NonfungiblePositionManager$OnIncreaseLiquidityFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PreIncreaseLiquidityFunction {
+    function preIncreaseLiquidityFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$increaseLiquidityFunctionInputs memory inputs) virtual external;
+
+    function triggerPreIncreaseLiquidityFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x219f5d17),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preIncreaseLiquidityFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnIsApprovedForAllFunction {
     function onIsApprovedForAllFunction(FunctionContext memory ctx, NonfungiblePositionManager$isApprovedForAllFunctionInputs memory inputs, NonfungiblePositionManager$isApprovedForAllFunctionOutputs memory outputs) virtual external;
 
@@ -623,6 +805,20 @@ abstract contract NonfungiblePositionManager$OnIsApprovedForAllFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onIsApprovedForAllFunction.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PreIsApprovedForAllFunction {
+    function preIsApprovedForAllFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$isApprovedForAllFunctionInputs memory inputs) virtual external;
+
+    function triggerPreIsApprovedForAllFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0xe985e9c5),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preIsApprovedForAllFunction.selector
         });
     }
 }
@@ -641,6 +837,20 @@ abstract contract NonfungiblePositionManager$OnMintFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PreMintFunction {
+    function preMintFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$mintFunctionInputs memory inputs) virtual external;
+
+    function triggerPreMintFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x88316456),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preMintFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnMulticallFunction {
     function onMulticallFunction(FunctionContext memory ctx, NonfungiblePositionManager$multicallFunctionInputs memory inputs, NonfungiblePositionManager$multicallFunctionOutputs memory outputs) virtual external;
 
@@ -651,6 +861,20 @@ abstract contract NonfungiblePositionManager$OnMulticallFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onMulticallFunction.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PreMulticallFunction {
+    function preMulticallFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$multicallFunctionInputs memory inputs) virtual external;
+
+    function triggerPreMulticallFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0xac9650d8),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preMulticallFunction.selector
         });
     }
 }
@@ -669,6 +893,20 @@ abstract contract NonfungiblePositionManager$OnNameFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PreNameFunction {
+    function preNameFunction(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreNameFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x06fdde03),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preNameFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnOwnerOfFunction {
     function onOwnerOfFunction(FunctionContext memory ctx, NonfungiblePositionManager$ownerOfFunctionInputs memory inputs, NonfungiblePositionManager$ownerOfFunctionOutputs memory outputs) virtual external;
 
@@ -679,6 +917,20 @@ abstract contract NonfungiblePositionManager$OnOwnerOfFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onOwnerOfFunction.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PreOwnerOfFunction {
+    function preOwnerOfFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$ownerOfFunctionInputs memory inputs) virtual external;
+
+    function triggerPreOwnerOfFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x6352211e),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preOwnerOfFunction.selector
         });
     }
 }
@@ -697,6 +949,20 @@ abstract contract NonfungiblePositionManager$OnPermitFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PrePermitFunction {
+    function prePermitFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$permitFunctionInputs memory inputs) virtual external;
+
+    function triggerPrePermitFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x7ac2ff7b),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.prePermitFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnPositionsFunction {
     function onPositionsFunction(FunctionContext memory ctx, NonfungiblePositionManager$positionsFunctionInputs memory inputs, NonfungiblePositionManager$positionsFunctionOutputs memory outputs) virtual external;
 
@@ -707,6 +973,20 @@ abstract contract NonfungiblePositionManager$OnPositionsFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onPositionsFunction.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PrePositionsFunction {
+    function prePositionsFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$positionsFunctionInputs memory inputs) virtual external;
+
+    function triggerPrePositionsFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x99fbab88),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.prePositionsFunction.selector
         });
     }
 }
@@ -725,6 +1005,20 @@ abstract contract NonfungiblePositionManager$OnRefundEthFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PreRefundEthFunction {
+    function preRefundEthFunction(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreRefundEthFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x12210e8a),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preRefundEthFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnSafeTransferFromFunction {
     function onSafeTransferFromFunction(FunctionContext memory ctx, NonfungiblePositionManager$safeTransferFromFunctionInputs memory inputs) virtual external;
 
@@ -735,6 +1029,20 @@ abstract contract NonfungiblePositionManager$OnSafeTransferFromFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onSafeTransferFromFunction.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PreSafeTransferFromFunction {
+    function preSafeTransferFromFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$safeTransferFromFunctionInputs memory inputs) virtual external;
+
+    function triggerPreSafeTransferFromFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x42842e0e),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preSafeTransferFromFunction.selector
         });
     }
 }
@@ -753,6 +1061,20 @@ abstract contract NonfungiblePositionManager$OnSelfPermitFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PreSelfPermitFunction {
+    function preSelfPermitFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$selfPermitFunctionInputs memory inputs) virtual external;
+
+    function triggerPreSelfPermitFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0xf3995c67),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preSelfPermitFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnSelfPermitAllowedFunction {
     function onSelfPermitAllowedFunction(FunctionContext memory ctx, NonfungiblePositionManager$selfPermitAllowedFunctionInputs memory inputs) virtual external;
 
@@ -763,6 +1085,20 @@ abstract contract NonfungiblePositionManager$OnSelfPermitAllowedFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onSelfPermitAllowedFunction.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PreSelfPermitAllowedFunction {
+    function preSelfPermitAllowedFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$selfPermitAllowedFunctionInputs memory inputs) virtual external;
+
+    function triggerPreSelfPermitAllowedFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x4659a494),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preSelfPermitAllowedFunction.selector
         });
     }
 }
@@ -781,6 +1117,20 @@ abstract contract NonfungiblePositionManager$OnSelfPermitAllowedIfNecessaryFunct
     }
 }
 
+abstract contract NonfungiblePositionManager$PreSelfPermitAllowedIfNecessaryFunction {
+    function preSelfPermitAllowedIfNecessaryFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$selfPermitAllowedIfNecessaryFunctionInputs memory inputs) virtual external;
+
+    function triggerPreSelfPermitAllowedIfNecessaryFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0xa4a78f0c),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preSelfPermitAllowedIfNecessaryFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnSelfPermitIfNecessaryFunction {
     function onSelfPermitIfNecessaryFunction(FunctionContext memory ctx, NonfungiblePositionManager$selfPermitIfNecessaryFunctionInputs memory inputs) virtual external;
 
@@ -791,6 +1141,20 @@ abstract contract NonfungiblePositionManager$OnSelfPermitIfNecessaryFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onSelfPermitIfNecessaryFunction.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PreSelfPermitIfNecessaryFunction {
+    function preSelfPermitIfNecessaryFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$selfPermitIfNecessaryFunctionInputs memory inputs) virtual external;
+
+    function triggerPreSelfPermitIfNecessaryFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0xc2e3140a),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preSelfPermitIfNecessaryFunction.selector
         });
     }
 }
@@ -809,6 +1173,20 @@ abstract contract NonfungiblePositionManager$OnSetApprovalForAllFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PreSetApprovalForAllFunction {
+    function preSetApprovalForAllFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$setApprovalForAllFunctionInputs memory inputs) virtual external;
+
+    function triggerPreSetApprovalForAllFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0xa22cb465),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preSetApprovalForAllFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnSupportsInterfaceFunction {
     function onSupportsInterfaceFunction(FunctionContext memory ctx, NonfungiblePositionManager$supportsInterfaceFunctionInputs memory inputs, NonfungiblePositionManager$supportsInterfaceFunctionOutputs memory outputs) virtual external;
 
@@ -819,6 +1197,20 @@ abstract contract NonfungiblePositionManager$OnSupportsInterfaceFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onSupportsInterfaceFunction.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PreSupportsInterfaceFunction {
+    function preSupportsInterfaceFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$supportsInterfaceFunctionInputs memory inputs) virtual external;
+
+    function triggerPreSupportsInterfaceFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x01ffc9a7),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preSupportsInterfaceFunction.selector
         });
     }
 }
@@ -837,6 +1229,20 @@ abstract contract NonfungiblePositionManager$OnSweepTokenFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PreSweepTokenFunction {
+    function preSweepTokenFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$sweepTokenFunctionInputs memory inputs) virtual external;
+
+    function triggerPreSweepTokenFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0xdf2ab5bb),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preSweepTokenFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnSymbolFunction {
     function onSymbolFunction(FunctionContext memory ctx, NonfungiblePositionManager$symbolFunctionOutputs memory outputs) virtual external;
 
@@ -847,6 +1253,20 @@ abstract contract NonfungiblePositionManager$OnSymbolFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onSymbolFunction.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PreSymbolFunction {
+    function preSymbolFunction(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreSymbolFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x95d89b41),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preSymbolFunction.selector
         });
     }
 }
@@ -865,6 +1285,20 @@ abstract contract NonfungiblePositionManager$OnTokenByIndexFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PreTokenByIndexFunction {
+    function preTokenByIndexFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$tokenByIndexFunctionInputs memory inputs) virtual external;
+
+    function triggerPreTokenByIndexFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x4f6ccce7),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preTokenByIndexFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnTokenOfOwnerByIndexFunction {
     function onTokenOfOwnerByIndexFunction(FunctionContext memory ctx, NonfungiblePositionManager$tokenOfOwnerByIndexFunctionInputs memory inputs, NonfungiblePositionManager$tokenOfOwnerByIndexFunctionOutputs memory outputs) virtual external;
 
@@ -879,8 +1313,22 @@ abstract contract NonfungiblePositionManager$OnTokenOfOwnerByIndexFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PreTokenOfOwnerByIndexFunction {
+    function preTokenOfOwnerByIndexFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$tokenOfOwnerByIndexFunctionInputs memory inputs) virtual external;
+
+    function triggerPreTokenOfOwnerByIndexFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x2f745c59),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preTokenOfOwnerByIndexFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnTokenUriFunction {
-    function onTokenUriFunction(FunctionContext memory ctx, NonfungiblePositionManager$tokenURIFunctionInputs memory inputs, NonfungiblePositionManager$tokenURIFunctionOutputs memory outputs) virtual external;
+    function onTokenUriFunction(FunctionContext memory ctx, NonfungiblePositionManager$tokenUriFunctionInputs memory inputs, NonfungiblePositionManager$tokenUriFunctionOutputs memory outputs) virtual external;
 
     function triggerOnTokenUriFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -889,6 +1337,20 @@ abstract contract NonfungiblePositionManager$OnTokenUriFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onTokenUriFunction.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PreTokenUriFunction {
+    function preTokenUriFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$tokenUriFunctionInputs memory inputs) virtual external;
+
+    function triggerPreTokenUriFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0xc87b56dd),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preTokenUriFunction.selector
         });
     }
 }
@@ -907,6 +1369,20 @@ abstract contract NonfungiblePositionManager$OnTotalSupplyFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PreTotalSupplyFunction {
+    function preTotalSupplyFunction(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreTotalSupplyFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x18160ddd),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preTotalSupplyFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnTransferFromFunction {
     function onTransferFromFunction(FunctionContext memory ctx, NonfungiblePositionManager$transferFromFunctionInputs memory inputs) virtual external;
 
@@ -917,6 +1393,20 @@ abstract contract NonfungiblePositionManager$OnTransferFromFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onTransferFromFunction.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PreTransferFromFunction {
+    function preTransferFromFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$transferFromFunctionInputs memory inputs) virtual external;
+
+    function triggerPreTransferFromFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x23b872dd),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preTransferFromFunction.selector
         });
     }
 }
@@ -935,8 +1425,22 @@ abstract contract NonfungiblePositionManager$OnUniswapV3MintCallbackFunction {
     }
 }
 
+abstract contract NonfungiblePositionManager$PreUniswapV3MintCallbackFunction {
+    function preUniswapV3MintCallbackFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$uniswapV3MintCallbackFunctionInputs memory inputs) virtual external;
+
+    function triggerPreUniswapV3MintCallbackFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0xd3487997),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preUniswapV3MintCallbackFunction.selector
+        });
+    }
+}
+
 abstract contract NonfungiblePositionManager$OnUnwrapWeth9Function {
-    function onUnwrapWeth9Function(FunctionContext memory ctx, NonfungiblePositionManager$unwrapWETH9FunctionInputs memory inputs) virtual external;
+    function onUnwrapWeth9Function(FunctionContext memory ctx, NonfungiblePositionManager$unwrapWeth9FunctionInputs memory inputs) virtual external;
 
     function triggerOnUnwrapWeth9Function() view external returns (Trigger memory) {
         return Trigger({
@@ -945,6 +1449,20 @@ abstract contract NonfungiblePositionManager$OnUnwrapWeth9Function {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onUnwrapWeth9Function.selector
+        });
+    }
+}
+
+abstract contract NonfungiblePositionManager$PreUnwrapWeth9Function {
+    function preUnwrapWeth9Function(PreFunctionContext memory ctx, NonfungiblePositionManager$unwrapWeth9FunctionInputs memory inputs) virtual external;
+
+    function triggerPreUnwrapWeth9Function() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "NonfungiblePositionManager",
+            selector: bytes4(0x49404b7c),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preUnwrapWeth9Function.selector
         });
     }
 }
