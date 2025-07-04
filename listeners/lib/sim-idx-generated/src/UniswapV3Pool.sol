@@ -416,6 +416,20 @@ abstract contract UniswapV3Pool$OnBurnFunction {
     }
 }
 
+abstract contract UniswapV3Pool$PreBurnFunction {
+    function preBurnFunction(PreFunctionContext memory ctx, UniswapV3Pool$burnFunctionInputs memory inputs) virtual external;
+
+    function triggerPreBurnFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0xa34123a7),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preBurnFunction.selector
+        });
+    }
+}
+
 abstract contract UniswapV3Pool$OnCollectFunction {
     function onCollectFunction(FunctionContext memory ctx, UniswapV3Pool$collectFunctionInputs memory inputs, UniswapV3Pool$collectFunctionOutputs memory outputs) virtual external;
 
@@ -426,6 +440,20 @@ abstract contract UniswapV3Pool$OnCollectFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onCollectFunction.selector
+        });
+    }
+}
+
+abstract contract UniswapV3Pool$PreCollectFunction {
+    function preCollectFunction(PreFunctionContext memory ctx, UniswapV3Pool$collectFunctionInputs memory inputs) virtual external;
+
+    function triggerPreCollectFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x4f1eb3d8),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preCollectFunction.selector
         });
     }
 }
@@ -444,6 +472,20 @@ abstract contract UniswapV3Pool$OnCollectProtocolFunction {
     }
 }
 
+abstract contract UniswapV3Pool$PreCollectProtocolFunction {
+    function preCollectProtocolFunction(PreFunctionContext memory ctx, UniswapV3Pool$collectProtocolFunctionInputs memory inputs) virtual external;
+
+    function triggerPreCollectProtocolFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x85b66729),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preCollectProtocolFunction.selector
+        });
+    }
+}
+
 abstract contract UniswapV3Pool$OnFactoryFunction {
     function onFactoryFunction(FunctionContext memory ctx, UniswapV3Pool$factoryFunctionOutputs memory outputs) virtual external;
 
@@ -454,6 +496,20 @@ abstract contract UniswapV3Pool$OnFactoryFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onFactoryFunction.selector
+        });
+    }
+}
+
+abstract contract UniswapV3Pool$PreFactoryFunction {
+    function preFactoryFunction(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreFactoryFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0xc45a0155),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preFactoryFunction.selector
         });
     }
 }
@@ -472,6 +528,20 @@ abstract contract UniswapV3Pool$OnFeeFunction {
     }
 }
 
+abstract contract UniswapV3Pool$PreFeeFunction {
+    function preFeeFunction(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreFeeFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0xddca3f43),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preFeeFunction.selector
+        });
+    }
+}
+
 abstract contract UniswapV3Pool$OnFeeGrowthGlobal0X128Function {
     function onFeeGrowthGlobal0X128Function(FunctionContext memory ctx, UniswapV3Pool$feeGrowthGlobal0X128FunctionOutputs memory outputs) virtual external;
 
@@ -482,6 +552,20 @@ abstract contract UniswapV3Pool$OnFeeGrowthGlobal0X128Function {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onFeeGrowthGlobal0X128Function.selector
+        });
+    }
+}
+
+abstract contract UniswapV3Pool$PreFeeGrowthGlobal0X128Function {
+    function preFeeGrowthGlobal0X128Function(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreFeeGrowthGlobal0X128Function() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0xf3058399),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preFeeGrowthGlobal0X128Function.selector
         });
     }
 }
@@ -500,6 +584,20 @@ abstract contract UniswapV3Pool$OnFeeGrowthGlobal1X128Function {
     }
 }
 
+abstract contract UniswapV3Pool$PreFeeGrowthGlobal1X128Function {
+    function preFeeGrowthGlobal1X128Function(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreFeeGrowthGlobal1X128Function() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x46141319),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preFeeGrowthGlobal1X128Function.selector
+        });
+    }
+}
+
 abstract contract UniswapV3Pool$OnFlashFunction {
     function onFlashFunction(FunctionContext memory ctx, UniswapV3Pool$flashFunctionInputs memory inputs) virtual external;
 
@@ -510,6 +608,20 @@ abstract contract UniswapV3Pool$OnFlashFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onFlashFunction.selector
+        });
+    }
+}
+
+abstract contract UniswapV3Pool$PreFlashFunction {
+    function preFlashFunction(PreFunctionContext memory ctx, UniswapV3Pool$flashFunctionInputs memory inputs) virtual external;
+
+    function triggerPreFlashFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x490e6cbc),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preFlashFunction.selector
         });
     }
 }
@@ -528,6 +640,20 @@ abstract contract UniswapV3Pool$OnIncreaseObservationCardinalityNextFunction {
     }
 }
 
+abstract contract UniswapV3Pool$PreIncreaseObservationCardinalityNextFunction {
+    function preIncreaseObservationCardinalityNextFunction(PreFunctionContext memory ctx, UniswapV3Pool$increaseObservationCardinalityNextFunctionInputs memory inputs) virtual external;
+
+    function triggerPreIncreaseObservationCardinalityNextFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x32148f67),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preIncreaseObservationCardinalityNextFunction.selector
+        });
+    }
+}
+
 abstract contract UniswapV3Pool$OnInitializeFunction {
     function onInitializeFunction(FunctionContext memory ctx, UniswapV3Pool$initializeFunctionInputs memory inputs) virtual external;
 
@@ -538,6 +664,20 @@ abstract contract UniswapV3Pool$OnInitializeFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onInitializeFunction.selector
+        });
+    }
+}
+
+abstract contract UniswapV3Pool$PreInitializeFunction {
+    function preInitializeFunction(PreFunctionContext memory ctx, UniswapV3Pool$initializeFunctionInputs memory inputs) virtual external;
+
+    function triggerPreInitializeFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0xf637731d),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preInitializeFunction.selector
         });
     }
 }
@@ -556,6 +696,20 @@ abstract contract UniswapV3Pool$OnLiquidityFunction {
     }
 }
 
+abstract contract UniswapV3Pool$PreLiquidityFunction {
+    function preLiquidityFunction(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreLiquidityFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x1a686502),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preLiquidityFunction.selector
+        });
+    }
+}
+
 abstract contract UniswapV3Pool$OnMaxLiquidityPerTickFunction {
     function onMaxLiquidityPerTickFunction(FunctionContext memory ctx, UniswapV3Pool$maxLiquidityPerTickFunctionOutputs memory outputs) virtual external;
 
@@ -566,6 +720,20 @@ abstract contract UniswapV3Pool$OnMaxLiquidityPerTickFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onMaxLiquidityPerTickFunction.selector
+        });
+    }
+}
+
+abstract contract UniswapV3Pool$PreMaxLiquidityPerTickFunction {
+    function preMaxLiquidityPerTickFunction(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreMaxLiquidityPerTickFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x70cf754a),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preMaxLiquidityPerTickFunction.selector
         });
     }
 }
@@ -584,6 +752,20 @@ abstract contract UniswapV3Pool$OnMintFunction {
     }
 }
 
+abstract contract UniswapV3Pool$PreMintFunction {
+    function preMintFunction(PreFunctionContext memory ctx, UniswapV3Pool$mintFunctionInputs memory inputs) virtual external;
+
+    function triggerPreMintFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x3c8a7d8d),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preMintFunction.selector
+        });
+    }
+}
+
 abstract contract UniswapV3Pool$OnObservationsFunction {
     function onObservationsFunction(FunctionContext memory ctx, UniswapV3Pool$observationsFunctionInputs memory inputs, UniswapV3Pool$observationsFunctionOutputs memory outputs) virtual external;
 
@@ -594,6 +776,20 @@ abstract contract UniswapV3Pool$OnObservationsFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onObservationsFunction.selector
+        });
+    }
+}
+
+abstract contract UniswapV3Pool$PreObservationsFunction {
+    function preObservationsFunction(PreFunctionContext memory ctx, UniswapV3Pool$observationsFunctionInputs memory inputs) virtual external;
+
+    function triggerPreObservationsFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x252c09d7),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preObservationsFunction.selector
         });
     }
 }
@@ -612,6 +808,20 @@ abstract contract UniswapV3Pool$OnObserveFunction {
     }
 }
 
+abstract contract UniswapV3Pool$PreObserveFunction {
+    function preObserveFunction(PreFunctionContext memory ctx, UniswapV3Pool$observeFunctionInputs memory inputs) virtual external;
+
+    function triggerPreObserveFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x883bdbfd),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preObserveFunction.selector
+        });
+    }
+}
+
 abstract contract UniswapV3Pool$OnPositionsFunction {
     function onPositionsFunction(FunctionContext memory ctx, UniswapV3Pool$positionsFunctionInputs memory inputs, UniswapV3Pool$positionsFunctionOutputs memory outputs) virtual external;
 
@@ -622,6 +832,20 @@ abstract contract UniswapV3Pool$OnPositionsFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onPositionsFunction.selector
+        });
+    }
+}
+
+abstract contract UniswapV3Pool$PrePositionsFunction {
+    function prePositionsFunction(PreFunctionContext memory ctx, UniswapV3Pool$positionsFunctionInputs memory inputs) virtual external;
+
+    function triggerPrePositionsFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x514ea4bf),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.prePositionsFunction.selector
         });
     }
 }
@@ -640,6 +864,20 @@ abstract contract UniswapV3Pool$OnProtocolFeesFunction {
     }
 }
 
+abstract contract UniswapV3Pool$PreProtocolFeesFunction {
+    function preProtocolFeesFunction(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreProtocolFeesFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x1ad8b03b),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preProtocolFeesFunction.selector
+        });
+    }
+}
+
 abstract contract UniswapV3Pool$OnSetFeeProtocolFunction {
     function onSetFeeProtocolFunction(FunctionContext memory ctx, UniswapV3Pool$setFeeProtocolFunctionInputs memory inputs) virtual external;
 
@@ -650,6 +888,20 @@ abstract contract UniswapV3Pool$OnSetFeeProtocolFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onSetFeeProtocolFunction.selector
+        });
+    }
+}
+
+abstract contract UniswapV3Pool$PreSetFeeProtocolFunction {
+    function preSetFeeProtocolFunction(PreFunctionContext memory ctx, UniswapV3Pool$setFeeProtocolFunctionInputs memory inputs) virtual external;
+
+    function triggerPreSetFeeProtocolFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x8206a4d1),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preSetFeeProtocolFunction.selector
         });
     }
 }
@@ -668,6 +920,20 @@ abstract contract UniswapV3Pool$OnSlot0Function {
     }
 }
 
+abstract contract UniswapV3Pool$PreSlot0Function {
+    function preSlot0Function(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreSlot0Function() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x3850c7bd),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preSlot0Function.selector
+        });
+    }
+}
+
 abstract contract UniswapV3Pool$OnSnapshotCumulativesInsideFunction {
     function onSnapshotCumulativesInsideFunction(FunctionContext memory ctx, UniswapV3Pool$snapshotCumulativesInsideFunctionInputs memory inputs, UniswapV3Pool$snapshotCumulativesInsideFunctionOutputs memory outputs) virtual external;
 
@@ -678,6 +944,20 @@ abstract contract UniswapV3Pool$OnSnapshotCumulativesInsideFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onSnapshotCumulativesInsideFunction.selector
+        });
+    }
+}
+
+abstract contract UniswapV3Pool$PreSnapshotCumulativesInsideFunction {
+    function preSnapshotCumulativesInsideFunction(PreFunctionContext memory ctx, UniswapV3Pool$snapshotCumulativesInsideFunctionInputs memory inputs) virtual external;
+
+    function triggerPreSnapshotCumulativesInsideFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0xa38807f2),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preSnapshotCumulativesInsideFunction.selector
         });
     }
 }
@@ -696,6 +976,20 @@ abstract contract UniswapV3Pool$OnSwapFunction {
     }
 }
 
+abstract contract UniswapV3Pool$PreSwapFunction {
+    function preSwapFunction(PreFunctionContext memory ctx, UniswapV3Pool$swapFunctionInputs memory inputs) virtual external;
+
+    function triggerPreSwapFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x128acb08),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preSwapFunction.selector
+        });
+    }
+}
+
 abstract contract UniswapV3Pool$OnTickBitmapFunction {
     function onTickBitmapFunction(FunctionContext memory ctx, UniswapV3Pool$tickBitmapFunctionInputs memory inputs, UniswapV3Pool$tickBitmapFunctionOutputs memory outputs) virtual external;
 
@@ -706,6 +1000,20 @@ abstract contract UniswapV3Pool$OnTickBitmapFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onTickBitmapFunction.selector
+        });
+    }
+}
+
+abstract contract UniswapV3Pool$PreTickBitmapFunction {
+    function preTickBitmapFunction(PreFunctionContext memory ctx, UniswapV3Pool$tickBitmapFunctionInputs memory inputs) virtual external;
+
+    function triggerPreTickBitmapFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x5339c296),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preTickBitmapFunction.selector
         });
     }
 }
@@ -724,6 +1032,20 @@ abstract contract UniswapV3Pool$OnTickSpacingFunction {
     }
 }
 
+abstract contract UniswapV3Pool$PreTickSpacingFunction {
+    function preTickSpacingFunction(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreTickSpacingFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0xd0c93a7c),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preTickSpacingFunction.selector
+        });
+    }
+}
+
 abstract contract UniswapV3Pool$OnTicksFunction {
     function onTicksFunction(FunctionContext memory ctx, UniswapV3Pool$ticksFunctionInputs memory inputs, UniswapV3Pool$ticksFunctionOutputs memory outputs) virtual external;
 
@@ -734,6 +1056,20 @@ abstract contract UniswapV3Pool$OnTicksFunction {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onTicksFunction.selector
+        });
+    }
+}
+
+abstract contract UniswapV3Pool$PreTicksFunction {
+    function preTicksFunction(PreFunctionContext memory ctx, UniswapV3Pool$ticksFunctionInputs memory inputs) virtual external;
+
+    function triggerPreTicksFunction() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0xf30dba93),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preTicksFunction.selector
         });
     }
 }
@@ -752,6 +1088,20 @@ abstract contract UniswapV3Pool$OnToken0Function {
     }
 }
 
+abstract contract UniswapV3Pool$PreToken0Function {
+    function preToken0Function(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreToken0Function() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0x0dfe1681),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preToken0Function.selector
+        });
+    }
+}
+
 abstract contract UniswapV3Pool$OnToken1Function {
     function onToken1Function(FunctionContext memory ctx, UniswapV3Pool$token1FunctionOutputs memory outputs) virtual external;
 
@@ -762,6 +1112,20 @@ abstract contract UniswapV3Pool$OnToken1Function {
             triggerType: TriggerType.FUNCTION,
             listenerCodehash: address(this).codehash,
             handlerSelector: this.onToken1Function.selector
+        });
+    }
+}
+
+abstract contract UniswapV3Pool$PreToken1Function {
+    function preToken1Function(PreFunctionContext memory ctx) virtual external;
+
+    function triggerPreToken1Function() view external returns (Trigger memory) {
+        return Trigger({
+            abiName: "UniswapV3Pool",
+            selector: bytes4(0xd21220a7),
+            triggerType: TriggerType.PRE_FUNCTION,
+            listenerCodehash: address(this).codehash,
+            handlerSelector: this.preToken1Function.selector
         });
     }
 }
