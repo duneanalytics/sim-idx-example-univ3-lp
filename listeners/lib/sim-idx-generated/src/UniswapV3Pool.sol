@@ -7,18 +7,18 @@ import "lib/sim-idx-sol/src/Context.sol";
 function UniswapV3Pool$Abi() pure returns (Abi memory) {
     return Abi("UniswapV3Pool");
 }
-struct UniswapV3Pool$burnFunctionInputs {
+struct UniswapV3Pool$BurnFunctionInputs {
     int24 tickLower;
     int24 tickUpper;
     uint128 amount;
 }
 
-struct UniswapV3Pool$burnFunctionOutputs {
+struct UniswapV3Pool$BurnFunctionOutputs {
     uint256 amount0;
     uint256 amount1;
 }
 
-struct UniswapV3Pool$collectFunctionInputs {
+struct UniswapV3Pool$CollectFunctionInputs {
     address recipient;
     int24 tickLower;
     int24 tickUpper;
@@ -26,62 +26,62 @@ struct UniswapV3Pool$collectFunctionInputs {
     uint128 amount1Requested;
 }
 
-struct UniswapV3Pool$collectFunctionOutputs {
+struct UniswapV3Pool$CollectFunctionOutputs {
     uint128 amount0;
     uint128 amount1;
 }
 
-struct UniswapV3Pool$collectProtocolFunctionInputs {
+struct UniswapV3Pool$CollectProtocolFunctionInputs {
     address recipient;
     uint128 amount0Requested;
     uint128 amount1Requested;
 }
 
-struct UniswapV3Pool$collectProtocolFunctionOutputs {
+struct UniswapV3Pool$CollectProtocolFunctionOutputs {
     uint128 amount0;
     uint128 amount1;
 }
 
-struct UniswapV3Pool$factoryFunctionOutputs {
+struct UniswapV3Pool$FactoryFunctionOutputs {
     address outArg0;
 }
 
-struct UniswapV3Pool$feeFunctionOutputs {
+struct UniswapV3Pool$FeeFunctionOutputs {
     uint24 outArg0;
 }
 
-struct UniswapV3Pool$feeGrowthGlobal0X128FunctionOutputs {
+struct UniswapV3Pool$FeeGrowthGlobal0X128FunctionOutputs {
     uint256 outArg0;
 }
 
-struct UniswapV3Pool$feeGrowthGlobal1X128FunctionOutputs {
+struct UniswapV3Pool$FeeGrowthGlobal1X128FunctionOutputs {
     uint256 outArg0;
 }
 
-struct UniswapV3Pool$flashFunctionInputs {
+struct UniswapV3Pool$FlashFunctionInputs {
     address recipient;
     uint256 amount0;
     uint256 amount1;
     bytes data;
 }
 
-struct UniswapV3Pool$increaseObservationCardinalityNextFunctionInputs {
+struct UniswapV3Pool$IncreaseObservationCardinalityNextFunctionInputs {
     uint16 observationCardinalityNext;
 }
 
-struct UniswapV3Pool$initializeFunctionInputs {
+struct UniswapV3Pool$InitializeFunctionInputs {
     uint160 sqrtPriceX96;
 }
 
-struct UniswapV3Pool$liquidityFunctionOutputs {
+struct UniswapV3Pool$LiquidityFunctionOutputs {
     uint128 outArg0;
 }
 
-struct UniswapV3Pool$maxLiquidityPerTickFunctionOutputs {
+struct UniswapV3Pool$MaxLiquidityPerTickFunctionOutputs {
     uint128 outArg0;
 }
 
-struct UniswapV3Pool$mintFunctionInputs {
+struct UniswapV3Pool$MintFunctionInputs {
     address recipient;
     int24 tickLower;
     int24 tickUpper;
@@ -89,36 +89,36 @@ struct UniswapV3Pool$mintFunctionInputs {
     bytes data;
 }
 
-struct UniswapV3Pool$mintFunctionOutputs {
+struct UniswapV3Pool$MintFunctionOutputs {
     uint256 amount0;
     uint256 amount1;
 }
 
-struct UniswapV3Pool$observationsFunctionInputs {
+struct UniswapV3Pool$ObservationsFunctionInputs {
     uint256 outArg0;
 }
 
-struct UniswapV3Pool$observationsFunctionOutputs {
+struct UniswapV3Pool$ObservationsFunctionOutputs {
     uint32 blockTimestamp;
     int56 tickCumulative;
     uint160 secondsPerLiquidityCumulativeX128;
     bool initialized;
 }
 
-struct UniswapV3Pool$observeFunctionInputs {
+struct UniswapV3Pool$ObserveFunctionInputs {
     uint32[] secondsAgos;
 }
 
-struct UniswapV3Pool$observeFunctionOutputs {
+struct UniswapV3Pool$ObserveFunctionOutputs {
     int56[] tickCumulatives;
     uint160[] secondsPerLiquidityCumulativeX128s;
 }
 
-struct UniswapV3Pool$positionsFunctionInputs {
+struct UniswapV3Pool$PositionsFunctionInputs {
     bytes32 outArg0;
 }
 
-struct UniswapV3Pool$positionsFunctionOutputs {
+struct UniswapV3Pool$PositionsFunctionOutputs {
     uint128 liquidity;
     uint256 feeGrowthInside0LastX128;
     uint256 feeGrowthInside1LastX128;
@@ -126,17 +126,17 @@ struct UniswapV3Pool$positionsFunctionOutputs {
     uint128 tokensOwed1;
 }
 
-struct UniswapV3Pool$protocolFeesFunctionOutputs {
+struct UniswapV3Pool$ProtocolFeesFunctionOutputs {
     uint128 token0;
     uint128 token1;
 }
 
-struct UniswapV3Pool$setFeeProtocolFunctionInputs {
+struct UniswapV3Pool$SetFeeProtocolFunctionInputs {
     uint8 feeProtocol0;
     uint8 feeProtocol1;
 }
 
-struct UniswapV3Pool$slot0FunctionOutputs {
+struct UniswapV3Pool$Slot0FunctionOutputs {
     uint160 sqrtPriceX96;
     int24 tick;
     uint16 observationIndex;
@@ -146,18 +146,18 @@ struct UniswapV3Pool$slot0FunctionOutputs {
     bool unlocked;
 }
 
-struct UniswapV3Pool$snapshotCumulativesInsideFunctionInputs {
+struct UniswapV3Pool$SnapshotCumulativesInsideFunctionInputs {
     int24 tickLower;
     int24 tickUpper;
 }
 
-struct UniswapV3Pool$snapshotCumulativesInsideFunctionOutputs {
+struct UniswapV3Pool$SnapshotCumulativesInsideFunctionOutputs {
     int56 tickCumulativeInside;
     uint160 secondsPerLiquidityInsideX128;
     uint32 secondsInside;
 }
 
-struct UniswapV3Pool$swapFunctionInputs {
+struct UniswapV3Pool$SwapFunctionInputs {
     address recipient;
     bool zeroForOne;
     int256 amountSpecified;
@@ -165,28 +165,28 @@ struct UniswapV3Pool$swapFunctionInputs {
     bytes data;
 }
 
-struct UniswapV3Pool$swapFunctionOutputs {
+struct UniswapV3Pool$SwapFunctionOutputs {
     int256 amount0;
     int256 amount1;
 }
 
-struct UniswapV3Pool$tickBitmapFunctionInputs {
+struct UniswapV3Pool$TickBitmapFunctionInputs {
     int16 outArg0;
 }
 
-struct UniswapV3Pool$tickBitmapFunctionOutputs {
+struct UniswapV3Pool$TickBitmapFunctionOutputs {
     uint256 outArg0;
 }
 
-struct UniswapV3Pool$tickSpacingFunctionOutputs {
+struct UniswapV3Pool$TickSpacingFunctionOutputs {
     int24 outArg0;
 }
 
-struct UniswapV3Pool$ticksFunctionInputs {
+struct UniswapV3Pool$TicksFunctionInputs {
     int24 outArg0;
 }
 
-struct UniswapV3Pool$ticksFunctionOutputs {
+struct UniswapV3Pool$TicksFunctionOutputs {
     uint128 liquidityGross;
     int128 liquidityNet;
     uint256 feeGrowthOutside0X128;
@@ -197,11 +197,11 @@ struct UniswapV3Pool$ticksFunctionOutputs {
     bool initialized;
 }
 
-struct UniswapV3Pool$token0FunctionOutputs {
+struct UniswapV3Pool$Token0FunctionOutputs {
     address outArg0;
 }
 
-struct UniswapV3Pool$token1FunctionOutputs {
+struct UniswapV3Pool$Token1FunctionOutputs {
     address outArg0;
 }
 
@@ -403,7 +403,7 @@ abstract contract UniswapV3Pool$OnSwapEvent {
 }
 
 abstract contract UniswapV3Pool$OnBurnFunction {
-    function onBurnFunction(FunctionContext memory ctx, UniswapV3Pool$burnFunctionInputs memory inputs, UniswapV3Pool$burnFunctionOutputs memory outputs) virtual external;
+    function onBurnFunction(FunctionContext memory ctx, UniswapV3Pool$BurnFunctionInputs memory inputs, UniswapV3Pool$BurnFunctionOutputs memory outputs) virtual external;
 
     function triggerOnBurnFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -417,7 +417,7 @@ abstract contract UniswapV3Pool$OnBurnFunction {
 }
 
 abstract contract UniswapV3Pool$PreBurnFunction {
-    function preBurnFunction(PreFunctionContext memory ctx, UniswapV3Pool$burnFunctionInputs memory inputs) virtual external;
+    function preBurnFunction(PreFunctionContext memory ctx, UniswapV3Pool$BurnFunctionInputs memory inputs) virtual external;
 
     function triggerPreBurnFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -431,7 +431,7 @@ abstract contract UniswapV3Pool$PreBurnFunction {
 }
 
 abstract contract UniswapV3Pool$OnCollectFunction {
-    function onCollectFunction(FunctionContext memory ctx, UniswapV3Pool$collectFunctionInputs memory inputs, UniswapV3Pool$collectFunctionOutputs memory outputs) virtual external;
+    function onCollectFunction(FunctionContext memory ctx, UniswapV3Pool$CollectFunctionInputs memory inputs, UniswapV3Pool$CollectFunctionOutputs memory outputs) virtual external;
 
     function triggerOnCollectFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -445,7 +445,7 @@ abstract contract UniswapV3Pool$OnCollectFunction {
 }
 
 abstract contract UniswapV3Pool$PreCollectFunction {
-    function preCollectFunction(PreFunctionContext memory ctx, UniswapV3Pool$collectFunctionInputs memory inputs) virtual external;
+    function preCollectFunction(PreFunctionContext memory ctx, UniswapV3Pool$CollectFunctionInputs memory inputs) virtual external;
 
     function triggerPreCollectFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -459,7 +459,7 @@ abstract contract UniswapV3Pool$PreCollectFunction {
 }
 
 abstract contract UniswapV3Pool$OnCollectProtocolFunction {
-    function onCollectProtocolFunction(FunctionContext memory ctx, UniswapV3Pool$collectProtocolFunctionInputs memory inputs, UniswapV3Pool$collectProtocolFunctionOutputs memory outputs) virtual external;
+    function onCollectProtocolFunction(FunctionContext memory ctx, UniswapV3Pool$CollectProtocolFunctionInputs memory inputs, UniswapV3Pool$CollectProtocolFunctionOutputs memory outputs) virtual external;
 
     function triggerOnCollectProtocolFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -473,7 +473,7 @@ abstract contract UniswapV3Pool$OnCollectProtocolFunction {
 }
 
 abstract contract UniswapV3Pool$PreCollectProtocolFunction {
-    function preCollectProtocolFunction(PreFunctionContext memory ctx, UniswapV3Pool$collectProtocolFunctionInputs memory inputs) virtual external;
+    function preCollectProtocolFunction(PreFunctionContext memory ctx, UniswapV3Pool$CollectProtocolFunctionInputs memory inputs) virtual external;
 
     function triggerPreCollectProtocolFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -487,7 +487,7 @@ abstract contract UniswapV3Pool$PreCollectProtocolFunction {
 }
 
 abstract contract UniswapV3Pool$OnFactoryFunction {
-    function onFactoryFunction(FunctionContext memory ctx, UniswapV3Pool$factoryFunctionOutputs memory outputs) virtual external;
+    function onFactoryFunction(FunctionContext memory ctx, UniswapV3Pool$FactoryFunctionOutputs memory outputs) virtual external;
 
     function triggerOnFactoryFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -515,7 +515,7 @@ abstract contract UniswapV3Pool$PreFactoryFunction {
 }
 
 abstract contract UniswapV3Pool$OnFeeFunction {
-    function onFeeFunction(FunctionContext memory ctx, UniswapV3Pool$feeFunctionOutputs memory outputs) virtual external;
+    function onFeeFunction(FunctionContext memory ctx, UniswapV3Pool$FeeFunctionOutputs memory outputs) virtual external;
 
     function triggerOnFeeFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -543,7 +543,7 @@ abstract contract UniswapV3Pool$PreFeeFunction {
 }
 
 abstract contract UniswapV3Pool$OnFeeGrowthGlobal0X128Function {
-    function onFeeGrowthGlobal0X128Function(FunctionContext memory ctx, UniswapV3Pool$feeGrowthGlobal0X128FunctionOutputs memory outputs) virtual external;
+    function onFeeGrowthGlobal0X128Function(FunctionContext memory ctx, UniswapV3Pool$FeeGrowthGlobal0X128FunctionOutputs memory outputs) virtual external;
 
     function triggerOnFeeGrowthGlobal0X128Function() view external returns (Trigger memory) {
         return Trigger({
@@ -571,7 +571,7 @@ abstract contract UniswapV3Pool$PreFeeGrowthGlobal0X128Function {
 }
 
 abstract contract UniswapV3Pool$OnFeeGrowthGlobal1X128Function {
-    function onFeeGrowthGlobal1X128Function(FunctionContext memory ctx, UniswapV3Pool$feeGrowthGlobal1X128FunctionOutputs memory outputs) virtual external;
+    function onFeeGrowthGlobal1X128Function(FunctionContext memory ctx, UniswapV3Pool$FeeGrowthGlobal1X128FunctionOutputs memory outputs) virtual external;
 
     function triggerOnFeeGrowthGlobal1X128Function() view external returns (Trigger memory) {
         return Trigger({
@@ -599,7 +599,7 @@ abstract contract UniswapV3Pool$PreFeeGrowthGlobal1X128Function {
 }
 
 abstract contract UniswapV3Pool$OnFlashFunction {
-    function onFlashFunction(FunctionContext memory ctx, UniswapV3Pool$flashFunctionInputs memory inputs) virtual external;
+    function onFlashFunction(FunctionContext memory ctx, UniswapV3Pool$FlashFunctionInputs memory inputs) virtual external;
 
     function triggerOnFlashFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -613,7 +613,7 @@ abstract contract UniswapV3Pool$OnFlashFunction {
 }
 
 abstract contract UniswapV3Pool$PreFlashFunction {
-    function preFlashFunction(PreFunctionContext memory ctx, UniswapV3Pool$flashFunctionInputs memory inputs) virtual external;
+    function preFlashFunction(PreFunctionContext memory ctx, UniswapV3Pool$FlashFunctionInputs memory inputs) virtual external;
 
     function triggerPreFlashFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -627,7 +627,7 @@ abstract contract UniswapV3Pool$PreFlashFunction {
 }
 
 abstract contract UniswapV3Pool$OnIncreaseObservationCardinalityNextFunction {
-    function onIncreaseObservationCardinalityNextFunction(FunctionContext memory ctx, UniswapV3Pool$increaseObservationCardinalityNextFunctionInputs memory inputs) virtual external;
+    function onIncreaseObservationCardinalityNextFunction(FunctionContext memory ctx, UniswapV3Pool$IncreaseObservationCardinalityNextFunctionInputs memory inputs) virtual external;
 
     function triggerOnIncreaseObservationCardinalityNextFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -641,7 +641,7 @@ abstract contract UniswapV3Pool$OnIncreaseObservationCardinalityNextFunction {
 }
 
 abstract contract UniswapV3Pool$PreIncreaseObservationCardinalityNextFunction {
-    function preIncreaseObservationCardinalityNextFunction(PreFunctionContext memory ctx, UniswapV3Pool$increaseObservationCardinalityNextFunctionInputs memory inputs) virtual external;
+    function preIncreaseObservationCardinalityNextFunction(PreFunctionContext memory ctx, UniswapV3Pool$IncreaseObservationCardinalityNextFunctionInputs memory inputs) virtual external;
 
     function triggerPreIncreaseObservationCardinalityNextFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -655,7 +655,7 @@ abstract contract UniswapV3Pool$PreIncreaseObservationCardinalityNextFunction {
 }
 
 abstract contract UniswapV3Pool$OnInitializeFunction {
-    function onInitializeFunction(FunctionContext memory ctx, UniswapV3Pool$initializeFunctionInputs memory inputs) virtual external;
+    function onInitializeFunction(FunctionContext memory ctx, UniswapV3Pool$InitializeFunctionInputs memory inputs) virtual external;
 
     function triggerOnInitializeFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -669,7 +669,7 @@ abstract contract UniswapV3Pool$OnInitializeFunction {
 }
 
 abstract contract UniswapV3Pool$PreInitializeFunction {
-    function preInitializeFunction(PreFunctionContext memory ctx, UniswapV3Pool$initializeFunctionInputs memory inputs) virtual external;
+    function preInitializeFunction(PreFunctionContext memory ctx, UniswapV3Pool$InitializeFunctionInputs memory inputs) virtual external;
 
     function triggerPreInitializeFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -683,7 +683,7 @@ abstract contract UniswapV3Pool$PreInitializeFunction {
 }
 
 abstract contract UniswapV3Pool$OnLiquidityFunction {
-    function onLiquidityFunction(FunctionContext memory ctx, UniswapV3Pool$liquidityFunctionOutputs memory outputs) virtual external;
+    function onLiquidityFunction(FunctionContext memory ctx, UniswapV3Pool$LiquidityFunctionOutputs memory outputs) virtual external;
 
     function triggerOnLiquidityFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -711,7 +711,7 @@ abstract contract UniswapV3Pool$PreLiquidityFunction {
 }
 
 abstract contract UniswapV3Pool$OnMaxLiquidityPerTickFunction {
-    function onMaxLiquidityPerTickFunction(FunctionContext memory ctx, UniswapV3Pool$maxLiquidityPerTickFunctionOutputs memory outputs) virtual external;
+    function onMaxLiquidityPerTickFunction(FunctionContext memory ctx, UniswapV3Pool$MaxLiquidityPerTickFunctionOutputs memory outputs) virtual external;
 
     function triggerOnMaxLiquidityPerTickFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -739,7 +739,7 @@ abstract contract UniswapV3Pool$PreMaxLiquidityPerTickFunction {
 }
 
 abstract contract UniswapV3Pool$OnMintFunction {
-    function onMintFunction(FunctionContext memory ctx, UniswapV3Pool$mintFunctionInputs memory inputs, UniswapV3Pool$mintFunctionOutputs memory outputs) virtual external;
+    function onMintFunction(FunctionContext memory ctx, UniswapV3Pool$MintFunctionInputs memory inputs, UniswapV3Pool$MintFunctionOutputs memory outputs) virtual external;
 
     function triggerOnMintFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -753,7 +753,7 @@ abstract contract UniswapV3Pool$OnMintFunction {
 }
 
 abstract contract UniswapV3Pool$PreMintFunction {
-    function preMintFunction(PreFunctionContext memory ctx, UniswapV3Pool$mintFunctionInputs memory inputs) virtual external;
+    function preMintFunction(PreFunctionContext memory ctx, UniswapV3Pool$MintFunctionInputs memory inputs) virtual external;
 
     function triggerPreMintFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -767,7 +767,7 @@ abstract contract UniswapV3Pool$PreMintFunction {
 }
 
 abstract contract UniswapV3Pool$OnObservationsFunction {
-    function onObservationsFunction(FunctionContext memory ctx, UniswapV3Pool$observationsFunctionInputs memory inputs, UniswapV3Pool$observationsFunctionOutputs memory outputs) virtual external;
+    function onObservationsFunction(FunctionContext memory ctx, UniswapV3Pool$ObservationsFunctionInputs memory inputs, UniswapV3Pool$ObservationsFunctionOutputs memory outputs) virtual external;
 
     function triggerOnObservationsFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -781,7 +781,7 @@ abstract contract UniswapV3Pool$OnObservationsFunction {
 }
 
 abstract contract UniswapV3Pool$PreObservationsFunction {
-    function preObservationsFunction(PreFunctionContext memory ctx, UniswapV3Pool$observationsFunctionInputs memory inputs) virtual external;
+    function preObservationsFunction(PreFunctionContext memory ctx, UniswapV3Pool$ObservationsFunctionInputs memory inputs) virtual external;
 
     function triggerPreObservationsFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -795,7 +795,7 @@ abstract contract UniswapV3Pool$PreObservationsFunction {
 }
 
 abstract contract UniswapV3Pool$OnObserveFunction {
-    function onObserveFunction(FunctionContext memory ctx, UniswapV3Pool$observeFunctionInputs memory inputs, UniswapV3Pool$observeFunctionOutputs memory outputs) virtual external;
+    function onObserveFunction(FunctionContext memory ctx, UniswapV3Pool$ObserveFunctionInputs memory inputs, UniswapV3Pool$ObserveFunctionOutputs memory outputs) virtual external;
 
     function triggerOnObserveFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -809,7 +809,7 @@ abstract contract UniswapV3Pool$OnObserveFunction {
 }
 
 abstract contract UniswapV3Pool$PreObserveFunction {
-    function preObserveFunction(PreFunctionContext memory ctx, UniswapV3Pool$observeFunctionInputs memory inputs) virtual external;
+    function preObserveFunction(PreFunctionContext memory ctx, UniswapV3Pool$ObserveFunctionInputs memory inputs) virtual external;
 
     function triggerPreObserveFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -823,7 +823,7 @@ abstract contract UniswapV3Pool$PreObserveFunction {
 }
 
 abstract contract UniswapV3Pool$OnPositionsFunction {
-    function onPositionsFunction(FunctionContext memory ctx, UniswapV3Pool$positionsFunctionInputs memory inputs, UniswapV3Pool$positionsFunctionOutputs memory outputs) virtual external;
+    function onPositionsFunction(FunctionContext memory ctx, UniswapV3Pool$PositionsFunctionInputs memory inputs, UniswapV3Pool$PositionsFunctionOutputs memory outputs) virtual external;
 
     function triggerOnPositionsFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -837,7 +837,7 @@ abstract contract UniswapV3Pool$OnPositionsFunction {
 }
 
 abstract contract UniswapV3Pool$PrePositionsFunction {
-    function prePositionsFunction(PreFunctionContext memory ctx, UniswapV3Pool$positionsFunctionInputs memory inputs) virtual external;
+    function prePositionsFunction(PreFunctionContext memory ctx, UniswapV3Pool$PositionsFunctionInputs memory inputs) virtual external;
 
     function triggerPrePositionsFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -851,7 +851,7 @@ abstract contract UniswapV3Pool$PrePositionsFunction {
 }
 
 abstract contract UniswapV3Pool$OnProtocolFeesFunction {
-    function onProtocolFeesFunction(FunctionContext memory ctx, UniswapV3Pool$protocolFeesFunctionOutputs memory outputs) virtual external;
+    function onProtocolFeesFunction(FunctionContext memory ctx, UniswapV3Pool$ProtocolFeesFunctionOutputs memory outputs) virtual external;
 
     function triggerOnProtocolFeesFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -879,7 +879,7 @@ abstract contract UniswapV3Pool$PreProtocolFeesFunction {
 }
 
 abstract contract UniswapV3Pool$OnSetFeeProtocolFunction {
-    function onSetFeeProtocolFunction(FunctionContext memory ctx, UniswapV3Pool$setFeeProtocolFunctionInputs memory inputs) virtual external;
+    function onSetFeeProtocolFunction(FunctionContext memory ctx, UniswapV3Pool$SetFeeProtocolFunctionInputs memory inputs) virtual external;
 
     function triggerOnSetFeeProtocolFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -893,7 +893,7 @@ abstract contract UniswapV3Pool$OnSetFeeProtocolFunction {
 }
 
 abstract contract UniswapV3Pool$PreSetFeeProtocolFunction {
-    function preSetFeeProtocolFunction(PreFunctionContext memory ctx, UniswapV3Pool$setFeeProtocolFunctionInputs memory inputs) virtual external;
+    function preSetFeeProtocolFunction(PreFunctionContext memory ctx, UniswapV3Pool$SetFeeProtocolFunctionInputs memory inputs) virtual external;
 
     function triggerPreSetFeeProtocolFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -907,7 +907,7 @@ abstract contract UniswapV3Pool$PreSetFeeProtocolFunction {
 }
 
 abstract contract UniswapV3Pool$OnSlot0Function {
-    function onSlot0Function(FunctionContext memory ctx, UniswapV3Pool$slot0FunctionOutputs memory outputs) virtual external;
+    function onSlot0Function(FunctionContext memory ctx, UniswapV3Pool$Slot0FunctionOutputs memory outputs) virtual external;
 
     function triggerOnSlot0Function() view external returns (Trigger memory) {
         return Trigger({
@@ -935,7 +935,7 @@ abstract contract UniswapV3Pool$PreSlot0Function {
 }
 
 abstract contract UniswapV3Pool$OnSnapshotCumulativesInsideFunction {
-    function onSnapshotCumulativesInsideFunction(FunctionContext memory ctx, UniswapV3Pool$snapshotCumulativesInsideFunctionInputs memory inputs, UniswapV3Pool$snapshotCumulativesInsideFunctionOutputs memory outputs) virtual external;
+    function onSnapshotCumulativesInsideFunction(FunctionContext memory ctx, UniswapV3Pool$SnapshotCumulativesInsideFunctionInputs memory inputs, UniswapV3Pool$SnapshotCumulativesInsideFunctionOutputs memory outputs) virtual external;
 
     function triggerOnSnapshotCumulativesInsideFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -949,7 +949,7 @@ abstract contract UniswapV3Pool$OnSnapshotCumulativesInsideFunction {
 }
 
 abstract contract UniswapV3Pool$PreSnapshotCumulativesInsideFunction {
-    function preSnapshotCumulativesInsideFunction(PreFunctionContext memory ctx, UniswapV3Pool$snapshotCumulativesInsideFunctionInputs memory inputs) virtual external;
+    function preSnapshotCumulativesInsideFunction(PreFunctionContext memory ctx, UniswapV3Pool$SnapshotCumulativesInsideFunctionInputs memory inputs) virtual external;
 
     function triggerPreSnapshotCumulativesInsideFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -963,7 +963,7 @@ abstract contract UniswapV3Pool$PreSnapshotCumulativesInsideFunction {
 }
 
 abstract contract UniswapV3Pool$OnSwapFunction {
-    function onSwapFunction(FunctionContext memory ctx, UniswapV3Pool$swapFunctionInputs memory inputs, UniswapV3Pool$swapFunctionOutputs memory outputs) virtual external;
+    function onSwapFunction(FunctionContext memory ctx, UniswapV3Pool$SwapFunctionInputs memory inputs, UniswapV3Pool$SwapFunctionOutputs memory outputs) virtual external;
 
     function triggerOnSwapFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -977,7 +977,7 @@ abstract contract UniswapV3Pool$OnSwapFunction {
 }
 
 abstract contract UniswapV3Pool$PreSwapFunction {
-    function preSwapFunction(PreFunctionContext memory ctx, UniswapV3Pool$swapFunctionInputs memory inputs) virtual external;
+    function preSwapFunction(PreFunctionContext memory ctx, UniswapV3Pool$SwapFunctionInputs memory inputs) virtual external;
 
     function triggerPreSwapFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -991,7 +991,7 @@ abstract contract UniswapV3Pool$PreSwapFunction {
 }
 
 abstract contract UniswapV3Pool$OnTickBitmapFunction {
-    function onTickBitmapFunction(FunctionContext memory ctx, UniswapV3Pool$tickBitmapFunctionInputs memory inputs, UniswapV3Pool$tickBitmapFunctionOutputs memory outputs) virtual external;
+    function onTickBitmapFunction(FunctionContext memory ctx, UniswapV3Pool$TickBitmapFunctionInputs memory inputs, UniswapV3Pool$TickBitmapFunctionOutputs memory outputs) virtual external;
 
     function triggerOnTickBitmapFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1005,7 +1005,7 @@ abstract contract UniswapV3Pool$OnTickBitmapFunction {
 }
 
 abstract contract UniswapV3Pool$PreTickBitmapFunction {
-    function preTickBitmapFunction(PreFunctionContext memory ctx, UniswapV3Pool$tickBitmapFunctionInputs memory inputs) virtual external;
+    function preTickBitmapFunction(PreFunctionContext memory ctx, UniswapV3Pool$TickBitmapFunctionInputs memory inputs) virtual external;
 
     function triggerPreTickBitmapFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1019,7 +1019,7 @@ abstract contract UniswapV3Pool$PreTickBitmapFunction {
 }
 
 abstract contract UniswapV3Pool$OnTickSpacingFunction {
-    function onTickSpacingFunction(FunctionContext memory ctx, UniswapV3Pool$tickSpacingFunctionOutputs memory outputs) virtual external;
+    function onTickSpacingFunction(FunctionContext memory ctx, UniswapV3Pool$TickSpacingFunctionOutputs memory outputs) virtual external;
 
     function triggerOnTickSpacingFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1047,7 +1047,7 @@ abstract contract UniswapV3Pool$PreTickSpacingFunction {
 }
 
 abstract contract UniswapV3Pool$OnTicksFunction {
-    function onTicksFunction(FunctionContext memory ctx, UniswapV3Pool$ticksFunctionInputs memory inputs, UniswapV3Pool$ticksFunctionOutputs memory outputs) virtual external;
+    function onTicksFunction(FunctionContext memory ctx, UniswapV3Pool$TicksFunctionInputs memory inputs, UniswapV3Pool$TicksFunctionOutputs memory outputs) virtual external;
 
     function triggerOnTicksFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1061,7 +1061,7 @@ abstract contract UniswapV3Pool$OnTicksFunction {
 }
 
 abstract contract UniswapV3Pool$PreTicksFunction {
-    function preTicksFunction(PreFunctionContext memory ctx, UniswapV3Pool$ticksFunctionInputs memory inputs) virtual external;
+    function preTicksFunction(PreFunctionContext memory ctx, UniswapV3Pool$TicksFunctionInputs memory inputs) virtual external;
 
     function triggerPreTicksFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1075,7 +1075,7 @@ abstract contract UniswapV3Pool$PreTicksFunction {
 }
 
 abstract contract UniswapV3Pool$OnToken0Function {
-    function onToken0Function(FunctionContext memory ctx, UniswapV3Pool$token0FunctionOutputs memory outputs) virtual external;
+    function onToken0Function(FunctionContext memory ctx, UniswapV3Pool$Token0FunctionOutputs memory outputs) virtual external;
 
     function triggerOnToken0Function() view external returns (Trigger memory) {
         return Trigger({
@@ -1103,7 +1103,7 @@ abstract contract UniswapV3Pool$PreToken0Function {
 }
 
 abstract contract UniswapV3Pool$OnToken1Function {
-    function onToken1Function(FunctionContext memory ctx, UniswapV3Pool$token1FunctionOutputs memory outputs) virtual external;
+    function onToken1Function(FunctionContext memory ctx, UniswapV3Pool$Token1FunctionOutputs memory outputs) virtual external;
 
     function triggerOnToken1Function() view external returns (Trigger memory) {
         return Trigger({

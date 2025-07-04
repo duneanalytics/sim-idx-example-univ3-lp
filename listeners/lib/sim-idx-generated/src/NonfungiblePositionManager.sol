@@ -7,36 +7,36 @@ import "lib/sim-idx-sol/src/Context.sol";
 function NonfungiblePositionManager$Abi() pure returns (Abi memory) {
     return Abi("NonfungiblePositionManager");
 }
-struct NonfungiblePositionManager$domainSeparatorFunctionOutputs {
+struct NonfungiblePositionManager$DomainSeparatorFunctionOutputs {
     bytes32 outArg0;
 }
 
-struct NonfungiblePositionManager$permitTypehashFunctionOutputs {
+struct NonfungiblePositionManager$PermitTypehashFunctionOutputs {
     bytes32 outArg0;
 }
 
-struct NonfungiblePositionManager$weth9FunctionOutputs {
+struct NonfungiblePositionManager$Weth9FunctionOutputs {
     address outArg0;
 }
 
-struct NonfungiblePositionManager$approveFunctionInputs {
+struct NonfungiblePositionManager$ApproveFunctionInputs {
     address to;
     uint256 tokenId;
 }
 
-struct NonfungiblePositionManager$balanceOfFunctionInputs {
+struct NonfungiblePositionManager$BalanceOfFunctionInputs {
     address owner;
 }
 
-struct NonfungiblePositionManager$balanceOfFunctionOutputs {
+struct NonfungiblePositionManager$BalanceOfFunctionOutputs {
     uint256 outArg0;
 }
 
-struct NonfungiblePositionManager$baseUriFunctionOutputs {
+struct NonfungiblePositionManager$BaseUriFunctionOutputs {
     string outArg0;
 }
 
-struct NonfungiblePositionManager$burnFunctionInputs {
+struct NonfungiblePositionManager$BurnFunctionInputs {
     uint256 tokenId;
 }
 
@@ -47,23 +47,23 @@ struct NonfungiblePositionManager$CollectParams {
     uint128 amount1Max;
 }
 
-struct NonfungiblePositionManager$collectFunctionInputs {
+struct NonfungiblePositionManager$CollectFunctionInputs {
     NonfungiblePositionManager$CollectParams params;
 }
 
-struct NonfungiblePositionManager$collectFunctionOutputs {
+struct NonfungiblePositionManager$CollectFunctionOutputs {
     uint256 amount0;
     uint256 amount1;
 }
 
-struct NonfungiblePositionManager$createAndInitializePoolIfNecessaryFunctionInputs {
+struct NonfungiblePositionManager$CreateAndInitializePoolIfNecessaryFunctionInputs {
     address token0;
     address token1;
     uint24 fee;
     uint160 sqrtPriceX96;
 }
 
-struct NonfungiblePositionManager$createAndInitializePoolIfNecessaryFunctionOutputs {
+struct NonfungiblePositionManager$CreateAndInitializePoolIfNecessaryFunctionOutputs {
     address pool;
 }
 
@@ -75,24 +75,24 @@ struct NonfungiblePositionManager$DecreaseLiquidityParams {
     uint256 deadline;
 }
 
-struct NonfungiblePositionManager$decreaseLiquidityFunctionInputs {
+struct NonfungiblePositionManager$DecreaseLiquidityFunctionInputs {
     NonfungiblePositionManager$DecreaseLiquidityParams params;
 }
 
-struct NonfungiblePositionManager$decreaseLiquidityFunctionOutputs {
+struct NonfungiblePositionManager$DecreaseLiquidityFunctionOutputs {
     uint256 amount0;
     uint256 amount1;
 }
 
-struct NonfungiblePositionManager$factoryFunctionOutputs {
+struct NonfungiblePositionManager$FactoryFunctionOutputs {
     address outArg0;
 }
 
-struct NonfungiblePositionManager$getApprovedFunctionInputs {
+struct NonfungiblePositionManager$GetApprovedFunctionInputs {
     uint256 tokenId;
 }
 
-struct NonfungiblePositionManager$getApprovedFunctionOutputs {
+struct NonfungiblePositionManager$GetApprovedFunctionOutputs {
     address outArg0;
 }
 
@@ -105,22 +105,22 @@ struct NonfungiblePositionManager$IncreaseLiquidityParams {
     uint256 deadline;
 }
 
-struct NonfungiblePositionManager$increaseLiquidityFunctionInputs {
+struct NonfungiblePositionManager$IncreaseLiquidityFunctionInputs {
     NonfungiblePositionManager$IncreaseLiquidityParams params;
 }
 
-struct NonfungiblePositionManager$increaseLiquidityFunctionOutputs {
+struct NonfungiblePositionManager$IncreaseLiquidityFunctionOutputs {
     uint128 liquidity;
     uint256 amount0;
     uint256 amount1;
 }
 
-struct NonfungiblePositionManager$isApprovedForAllFunctionInputs {
+struct NonfungiblePositionManager$IsApprovedForAllFunctionInputs {
     address owner;
     address operator;
 }
 
-struct NonfungiblePositionManager$isApprovedForAllFunctionOutputs {
+struct NonfungiblePositionManager$IsApprovedForAllFunctionOutputs {
     bool outArg0;
 }
 
@@ -138,38 +138,38 @@ struct NonfungiblePositionManager$MintParams {
     uint256 deadline;
 }
 
-struct NonfungiblePositionManager$mintFunctionInputs {
+struct NonfungiblePositionManager$MintFunctionInputs {
     NonfungiblePositionManager$MintParams params;
 }
 
-struct NonfungiblePositionManager$mintFunctionOutputs {
+struct NonfungiblePositionManager$MintFunctionOutputs {
     uint256 tokenId;
     uint128 liquidity;
     uint256 amount0;
     uint256 amount1;
 }
 
-struct NonfungiblePositionManager$multicallFunctionInputs {
+struct NonfungiblePositionManager$MulticallFunctionInputs {
     bytes[] data;
 }
 
-struct NonfungiblePositionManager$multicallFunctionOutputs {
+struct NonfungiblePositionManager$MulticallFunctionOutputs {
     bytes[] results;
 }
 
-struct NonfungiblePositionManager$nameFunctionOutputs {
+struct NonfungiblePositionManager$NameFunctionOutputs {
     string outArg0;
 }
 
-struct NonfungiblePositionManager$ownerOfFunctionInputs {
+struct NonfungiblePositionManager$OwnerOfFunctionInputs {
     uint256 tokenId;
 }
 
-struct NonfungiblePositionManager$ownerOfFunctionOutputs {
+struct NonfungiblePositionManager$OwnerOfFunctionOutputs {
     address outArg0;
 }
 
-struct NonfungiblePositionManager$permitFunctionInputs {
+struct NonfungiblePositionManager$PermitFunctionInputs {
     address spender;
     uint256 tokenId;
     uint256 deadline;
@@ -178,11 +178,11 @@ struct NonfungiblePositionManager$permitFunctionInputs {
     bytes32 s;
 }
 
-struct NonfungiblePositionManager$positionsFunctionInputs {
+struct NonfungiblePositionManager$PositionsFunctionInputs {
     uint256 tokenId;
 }
 
-struct NonfungiblePositionManager$positionsFunctionOutputs {
+struct NonfungiblePositionManager$PositionsFunctionOutputs {
     uint96 nonce;
     address operator;
     address token0;
@@ -197,13 +197,13 @@ struct NonfungiblePositionManager$positionsFunctionOutputs {
     uint128 tokensOwed1;
 }
 
-struct NonfungiblePositionManager$safeTransferFromFunctionInputs {
+struct NonfungiblePositionManager$SafeTransferFromFunctionInputs {
     address from;
     address to;
     uint256 tokenId;
 }
 
-struct NonfungiblePositionManager$selfPermitFunctionInputs {
+struct NonfungiblePositionManager$SelfPermitFunctionInputs {
     address token;
     uint256 value;
     uint256 deadline;
@@ -212,7 +212,7 @@ struct NonfungiblePositionManager$selfPermitFunctionInputs {
     bytes32 s;
 }
 
-struct NonfungiblePositionManager$selfPermitAllowedFunctionInputs {
+struct NonfungiblePositionManager$SelfPermitAllowedFunctionInputs {
     address token;
     uint256 nonce;
     uint256 expiry;
@@ -221,7 +221,7 @@ struct NonfungiblePositionManager$selfPermitAllowedFunctionInputs {
     bytes32 s;
 }
 
-struct NonfungiblePositionManager$selfPermitAllowedIfNecessaryFunctionInputs {
+struct NonfungiblePositionManager$SelfPermitAllowedIfNecessaryFunctionInputs {
     address token;
     uint256 nonce;
     uint256 expiry;
@@ -230,7 +230,7 @@ struct NonfungiblePositionManager$selfPermitAllowedIfNecessaryFunctionInputs {
     bytes32 s;
 }
 
-struct NonfungiblePositionManager$selfPermitIfNecessaryFunctionInputs {
+struct NonfungiblePositionManager$SelfPermitIfNecessaryFunctionInputs {
     address token;
     uint256 value;
     uint256 deadline;
@@ -239,71 +239,71 @@ struct NonfungiblePositionManager$selfPermitIfNecessaryFunctionInputs {
     bytes32 s;
 }
 
-struct NonfungiblePositionManager$setApprovalForAllFunctionInputs {
+struct NonfungiblePositionManager$SetApprovalForAllFunctionInputs {
     address operator;
     bool approved;
 }
 
-struct NonfungiblePositionManager$supportsInterfaceFunctionInputs {
+struct NonfungiblePositionManager$SupportsInterfaceFunctionInputs {
     bytes4 interfaceId;
 }
 
-struct NonfungiblePositionManager$supportsInterfaceFunctionOutputs {
+struct NonfungiblePositionManager$SupportsInterfaceFunctionOutputs {
     bool outArg0;
 }
 
-struct NonfungiblePositionManager$sweepTokenFunctionInputs {
+struct NonfungiblePositionManager$SweepTokenFunctionInputs {
     address token;
     uint256 amountMinimum;
     address recipient;
 }
 
-struct NonfungiblePositionManager$symbolFunctionOutputs {
+struct NonfungiblePositionManager$SymbolFunctionOutputs {
     string outArg0;
 }
 
-struct NonfungiblePositionManager$tokenByIndexFunctionInputs {
+struct NonfungiblePositionManager$TokenByIndexFunctionInputs {
     uint256 index;
 }
 
-struct NonfungiblePositionManager$tokenByIndexFunctionOutputs {
+struct NonfungiblePositionManager$TokenByIndexFunctionOutputs {
     uint256 outArg0;
 }
 
-struct NonfungiblePositionManager$tokenOfOwnerByIndexFunctionInputs {
+struct NonfungiblePositionManager$TokenOfOwnerByIndexFunctionInputs {
     address owner;
     uint256 index;
 }
 
-struct NonfungiblePositionManager$tokenOfOwnerByIndexFunctionOutputs {
+struct NonfungiblePositionManager$TokenOfOwnerByIndexFunctionOutputs {
     uint256 outArg0;
 }
 
-struct NonfungiblePositionManager$tokenUriFunctionInputs {
+struct NonfungiblePositionManager$TokenUriFunctionInputs {
     uint256 tokenId;
 }
 
-struct NonfungiblePositionManager$tokenUriFunctionOutputs {
+struct NonfungiblePositionManager$TokenUriFunctionOutputs {
     string outArg0;
 }
 
-struct NonfungiblePositionManager$totalSupplyFunctionOutputs {
+struct NonfungiblePositionManager$TotalSupplyFunctionOutputs {
     uint256 outArg0;
 }
 
-struct NonfungiblePositionManager$transferFromFunctionInputs {
+struct NonfungiblePositionManager$TransferFromFunctionInputs {
     address from;
     address to;
     uint256 tokenId;
 }
 
-struct NonfungiblePositionManager$uniswapV3MintCallbackFunctionInputs {
+struct NonfungiblePositionManager$UniswapV3MintCallbackFunctionInputs {
     uint256 amount0Owed;
     uint256 amount1Owed;
     bytes data;
 }
 
-struct NonfungiblePositionManager$unwrapWeth9FunctionInputs {
+struct NonfungiblePositionManager$UnwrapWeth9FunctionInputs {
     uint256 amountMinimum;
     address recipient;
 }
@@ -432,7 +432,7 @@ abstract contract NonfungiblePositionManager$OnTransferEvent {
 }
 
 abstract contract NonfungiblePositionManager$OnDomainSeparatorFunction {
-    function onDomainSeparatorFunction(FunctionContext memory ctx, NonfungiblePositionManager$domainSeparatorFunctionOutputs memory outputs) virtual external;
+    function onDomainSeparatorFunction(FunctionContext memory ctx, NonfungiblePositionManager$DomainSeparatorFunctionOutputs memory outputs) virtual external;
 
     function triggerOnDomainSeparatorFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -460,7 +460,7 @@ abstract contract NonfungiblePositionManager$PreDomainSeparatorFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnPermitTypehashFunction {
-    function onPermitTypehashFunction(FunctionContext memory ctx, NonfungiblePositionManager$permitTypehashFunctionOutputs memory outputs) virtual external;
+    function onPermitTypehashFunction(FunctionContext memory ctx, NonfungiblePositionManager$PermitTypehashFunctionOutputs memory outputs) virtual external;
 
     function triggerOnPermitTypehashFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -488,7 +488,7 @@ abstract contract NonfungiblePositionManager$PrePermitTypehashFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnWeth9Function {
-    function onWeth9Function(FunctionContext memory ctx, NonfungiblePositionManager$weth9FunctionOutputs memory outputs) virtual external;
+    function onWeth9Function(FunctionContext memory ctx, NonfungiblePositionManager$Weth9FunctionOutputs memory outputs) virtual external;
 
     function triggerOnWeth9Function() view external returns (Trigger memory) {
         return Trigger({
@@ -516,7 +516,7 @@ abstract contract NonfungiblePositionManager$PreWeth9Function {
 }
 
 abstract contract NonfungiblePositionManager$OnApproveFunction {
-    function onApproveFunction(FunctionContext memory ctx, NonfungiblePositionManager$approveFunctionInputs memory inputs) virtual external;
+    function onApproveFunction(FunctionContext memory ctx, NonfungiblePositionManager$ApproveFunctionInputs memory inputs) virtual external;
 
     function triggerOnApproveFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -530,7 +530,7 @@ abstract contract NonfungiblePositionManager$OnApproveFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreApproveFunction {
-    function preApproveFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$approveFunctionInputs memory inputs) virtual external;
+    function preApproveFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$ApproveFunctionInputs memory inputs) virtual external;
 
     function triggerPreApproveFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -544,7 +544,7 @@ abstract contract NonfungiblePositionManager$PreApproveFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnBalanceOfFunction {
-    function onBalanceOfFunction(FunctionContext memory ctx, NonfungiblePositionManager$balanceOfFunctionInputs memory inputs, NonfungiblePositionManager$balanceOfFunctionOutputs memory outputs) virtual external;
+    function onBalanceOfFunction(FunctionContext memory ctx, NonfungiblePositionManager$BalanceOfFunctionInputs memory inputs, NonfungiblePositionManager$BalanceOfFunctionOutputs memory outputs) virtual external;
 
     function triggerOnBalanceOfFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -558,7 +558,7 @@ abstract contract NonfungiblePositionManager$OnBalanceOfFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreBalanceOfFunction {
-    function preBalanceOfFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$balanceOfFunctionInputs memory inputs) virtual external;
+    function preBalanceOfFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$BalanceOfFunctionInputs memory inputs) virtual external;
 
     function triggerPreBalanceOfFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -572,7 +572,7 @@ abstract contract NonfungiblePositionManager$PreBalanceOfFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnBaseUriFunction {
-    function onBaseUriFunction(FunctionContext memory ctx, NonfungiblePositionManager$baseUriFunctionOutputs memory outputs) virtual external;
+    function onBaseUriFunction(FunctionContext memory ctx, NonfungiblePositionManager$BaseUriFunctionOutputs memory outputs) virtual external;
 
     function triggerOnBaseUriFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -600,7 +600,7 @@ abstract contract NonfungiblePositionManager$PreBaseUriFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnBurnFunction {
-    function onBurnFunction(FunctionContext memory ctx, NonfungiblePositionManager$burnFunctionInputs memory inputs) virtual external;
+    function onBurnFunction(FunctionContext memory ctx, NonfungiblePositionManager$BurnFunctionInputs memory inputs) virtual external;
 
     function triggerOnBurnFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -614,7 +614,7 @@ abstract contract NonfungiblePositionManager$OnBurnFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreBurnFunction {
-    function preBurnFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$burnFunctionInputs memory inputs) virtual external;
+    function preBurnFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$BurnFunctionInputs memory inputs) virtual external;
 
     function triggerPreBurnFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -628,7 +628,7 @@ abstract contract NonfungiblePositionManager$PreBurnFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnCollectFunction {
-    function onCollectFunction(FunctionContext memory ctx, NonfungiblePositionManager$collectFunctionInputs memory inputs, NonfungiblePositionManager$collectFunctionOutputs memory outputs) virtual external;
+    function onCollectFunction(FunctionContext memory ctx, NonfungiblePositionManager$CollectFunctionInputs memory inputs, NonfungiblePositionManager$CollectFunctionOutputs memory outputs) virtual external;
 
     function triggerOnCollectFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -642,7 +642,7 @@ abstract contract NonfungiblePositionManager$OnCollectFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreCollectFunction {
-    function preCollectFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$collectFunctionInputs memory inputs) virtual external;
+    function preCollectFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$CollectFunctionInputs memory inputs) virtual external;
 
     function triggerPreCollectFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -656,7 +656,7 @@ abstract contract NonfungiblePositionManager$PreCollectFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnCreateAndInitializePoolIfNecessaryFunction {
-    function onCreateAndInitializePoolIfNecessaryFunction(FunctionContext memory ctx, NonfungiblePositionManager$createAndInitializePoolIfNecessaryFunctionInputs memory inputs, NonfungiblePositionManager$createAndInitializePoolIfNecessaryFunctionOutputs memory outputs) virtual external;
+    function onCreateAndInitializePoolIfNecessaryFunction(FunctionContext memory ctx, NonfungiblePositionManager$CreateAndInitializePoolIfNecessaryFunctionInputs memory inputs, NonfungiblePositionManager$CreateAndInitializePoolIfNecessaryFunctionOutputs memory outputs) virtual external;
 
     function triggerOnCreateAndInitializePoolIfNecessaryFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -670,7 +670,7 @@ abstract contract NonfungiblePositionManager$OnCreateAndInitializePoolIfNecessar
 }
 
 abstract contract NonfungiblePositionManager$PreCreateAndInitializePoolIfNecessaryFunction {
-    function preCreateAndInitializePoolIfNecessaryFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$createAndInitializePoolIfNecessaryFunctionInputs memory inputs) virtual external;
+    function preCreateAndInitializePoolIfNecessaryFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$CreateAndInitializePoolIfNecessaryFunctionInputs memory inputs) virtual external;
 
     function triggerPreCreateAndInitializePoolIfNecessaryFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -684,7 +684,7 @@ abstract contract NonfungiblePositionManager$PreCreateAndInitializePoolIfNecessa
 }
 
 abstract contract NonfungiblePositionManager$OnDecreaseLiquidityFunction {
-    function onDecreaseLiquidityFunction(FunctionContext memory ctx, NonfungiblePositionManager$decreaseLiquidityFunctionInputs memory inputs, NonfungiblePositionManager$decreaseLiquidityFunctionOutputs memory outputs) virtual external;
+    function onDecreaseLiquidityFunction(FunctionContext memory ctx, NonfungiblePositionManager$DecreaseLiquidityFunctionInputs memory inputs, NonfungiblePositionManager$DecreaseLiquidityFunctionOutputs memory outputs) virtual external;
 
     function triggerOnDecreaseLiquidityFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -698,7 +698,7 @@ abstract contract NonfungiblePositionManager$OnDecreaseLiquidityFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreDecreaseLiquidityFunction {
-    function preDecreaseLiquidityFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$decreaseLiquidityFunctionInputs memory inputs) virtual external;
+    function preDecreaseLiquidityFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$DecreaseLiquidityFunctionInputs memory inputs) virtual external;
 
     function triggerPreDecreaseLiquidityFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -712,7 +712,7 @@ abstract contract NonfungiblePositionManager$PreDecreaseLiquidityFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnFactoryFunction {
-    function onFactoryFunction(FunctionContext memory ctx, NonfungiblePositionManager$factoryFunctionOutputs memory outputs) virtual external;
+    function onFactoryFunction(FunctionContext memory ctx, NonfungiblePositionManager$FactoryFunctionOutputs memory outputs) virtual external;
 
     function triggerOnFactoryFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -740,7 +740,7 @@ abstract contract NonfungiblePositionManager$PreFactoryFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnGetApprovedFunction {
-    function onGetApprovedFunction(FunctionContext memory ctx, NonfungiblePositionManager$getApprovedFunctionInputs memory inputs, NonfungiblePositionManager$getApprovedFunctionOutputs memory outputs) virtual external;
+    function onGetApprovedFunction(FunctionContext memory ctx, NonfungiblePositionManager$GetApprovedFunctionInputs memory inputs, NonfungiblePositionManager$GetApprovedFunctionOutputs memory outputs) virtual external;
 
     function triggerOnGetApprovedFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -754,7 +754,7 @@ abstract contract NonfungiblePositionManager$OnGetApprovedFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreGetApprovedFunction {
-    function preGetApprovedFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$getApprovedFunctionInputs memory inputs) virtual external;
+    function preGetApprovedFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$GetApprovedFunctionInputs memory inputs) virtual external;
 
     function triggerPreGetApprovedFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -768,7 +768,7 @@ abstract contract NonfungiblePositionManager$PreGetApprovedFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnIncreaseLiquidityFunction {
-    function onIncreaseLiquidityFunction(FunctionContext memory ctx, NonfungiblePositionManager$increaseLiquidityFunctionInputs memory inputs, NonfungiblePositionManager$increaseLiquidityFunctionOutputs memory outputs) virtual external;
+    function onIncreaseLiquidityFunction(FunctionContext memory ctx, NonfungiblePositionManager$IncreaseLiquidityFunctionInputs memory inputs, NonfungiblePositionManager$IncreaseLiquidityFunctionOutputs memory outputs) virtual external;
 
     function triggerOnIncreaseLiquidityFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -782,7 +782,7 @@ abstract contract NonfungiblePositionManager$OnIncreaseLiquidityFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreIncreaseLiquidityFunction {
-    function preIncreaseLiquidityFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$increaseLiquidityFunctionInputs memory inputs) virtual external;
+    function preIncreaseLiquidityFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$IncreaseLiquidityFunctionInputs memory inputs) virtual external;
 
     function triggerPreIncreaseLiquidityFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -796,7 +796,7 @@ abstract contract NonfungiblePositionManager$PreIncreaseLiquidityFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnIsApprovedForAllFunction {
-    function onIsApprovedForAllFunction(FunctionContext memory ctx, NonfungiblePositionManager$isApprovedForAllFunctionInputs memory inputs, NonfungiblePositionManager$isApprovedForAllFunctionOutputs memory outputs) virtual external;
+    function onIsApprovedForAllFunction(FunctionContext memory ctx, NonfungiblePositionManager$IsApprovedForAllFunctionInputs memory inputs, NonfungiblePositionManager$IsApprovedForAllFunctionOutputs memory outputs) virtual external;
 
     function triggerOnIsApprovedForAllFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -810,7 +810,7 @@ abstract contract NonfungiblePositionManager$OnIsApprovedForAllFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreIsApprovedForAllFunction {
-    function preIsApprovedForAllFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$isApprovedForAllFunctionInputs memory inputs) virtual external;
+    function preIsApprovedForAllFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$IsApprovedForAllFunctionInputs memory inputs) virtual external;
 
     function triggerPreIsApprovedForAllFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -824,7 +824,7 @@ abstract contract NonfungiblePositionManager$PreIsApprovedForAllFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnMintFunction {
-    function onMintFunction(FunctionContext memory ctx, NonfungiblePositionManager$mintFunctionInputs memory inputs, NonfungiblePositionManager$mintFunctionOutputs memory outputs) virtual external;
+    function onMintFunction(FunctionContext memory ctx, NonfungiblePositionManager$MintFunctionInputs memory inputs, NonfungiblePositionManager$MintFunctionOutputs memory outputs) virtual external;
 
     function triggerOnMintFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -838,7 +838,7 @@ abstract contract NonfungiblePositionManager$OnMintFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreMintFunction {
-    function preMintFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$mintFunctionInputs memory inputs) virtual external;
+    function preMintFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$MintFunctionInputs memory inputs) virtual external;
 
     function triggerPreMintFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -852,7 +852,7 @@ abstract contract NonfungiblePositionManager$PreMintFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnMulticallFunction {
-    function onMulticallFunction(FunctionContext memory ctx, NonfungiblePositionManager$multicallFunctionInputs memory inputs, NonfungiblePositionManager$multicallFunctionOutputs memory outputs) virtual external;
+    function onMulticallFunction(FunctionContext memory ctx, NonfungiblePositionManager$MulticallFunctionInputs memory inputs, NonfungiblePositionManager$MulticallFunctionOutputs memory outputs) virtual external;
 
     function triggerOnMulticallFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -866,7 +866,7 @@ abstract contract NonfungiblePositionManager$OnMulticallFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreMulticallFunction {
-    function preMulticallFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$multicallFunctionInputs memory inputs) virtual external;
+    function preMulticallFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$MulticallFunctionInputs memory inputs) virtual external;
 
     function triggerPreMulticallFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -880,7 +880,7 @@ abstract contract NonfungiblePositionManager$PreMulticallFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnNameFunction {
-    function onNameFunction(FunctionContext memory ctx, NonfungiblePositionManager$nameFunctionOutputs memory outputs) virtual external;
+    function onNameFunction(FunctionContext memory ctx, NonfungiblePositionManager$NameFunctionOutputs memory outputs) virtual external;
 
     function triggerOnNameFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -908,7 +908,7 @@ abstract contract NonfungiblePositionManager$PreNameFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnOwnerOfFunction {
-    function onOwnerOfFunction(FunctionContext memory ctx, NonfungiblePositionManager$ownerOfFunctionInputs memory inputs, NonfungiblePositionManager$ownerOfFunctionOutputs memory outputs) virtual external;
+    function onOwnerOfFunction(FunctionContext memory ctx, NonfungiblePositionManager$OwnerOfFunctionInputs memory inputs, NonfungiblePositionManager$OwnerOfFunctionOutputs memory outputs) virtual external;
 
     function triggerOnOwnerOfFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -922,7 +922,7 @@ abstract contract NonfungiblePositionManager$OnOwnerOfFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreOwnerOfFunction {
-    function preOwnerOfFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$ownerOfFunctionInputs memory inputs) virtual external;
+    function preOwnerOfFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$OwnerOfFunctionInputs memory inputs) virtual external;
 
     function triggerPreOwnerOfFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -936,7 +936,7 @@ abstract contract NonfungiblePositionManager$PreOwnerOfFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnPermitFunction {
-    function onPermitFunction(FunctionContext memory ctx, NonfungiblePositionManager$permitFunctionInputs memory inputs) virtual external;
+    function onPermitFunction(FunctionContext memory ctx, NonfungiblePositionManager$PermitFunctionInputs memory inputs) virtual external;
 
     function triggerOnPermitFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -950,7 +950,7 @@ abstract contract NonfungiblePositionManager$OnPermitFunction {
 }
 
 abstract contract NonfungiblePositionManager$PrePermitFunction {
-    function prePermitFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$permitFunctionInputs memory inputs) virtual external;
+    function prePermitFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$PermitFunctionInputs memory inputs) virtual external;
 
     function triggerPrePermitFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -964,7 +964,7 @@ abstract contract NonfungiblePositionManager$PrePermitFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnPositionsFunction {
-    function onPositionsFunction(FunctionContext memory ctx, NonfungiblePositionManager$positionsFunctionInputs memory inputs, NonfungiblePositionManager$positionsFunctionOutputs memory outputs) virtual external;
+    function onPositionsFunction(FunctionContext memory ctx, NonfungiblePositionManager$PositionsFunctionInputs memory inputs, NonfungiblePositionManager$PositionsFunctionOutputs memory outputs) virtual external;
 
     function triggerOnPositionsFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -978,7 +978,7 @@ abstract contract NonfungiblePositionManager$OnPositionsFunction {
 }
 
 abstract contract NonfungiblePositionManager$PrePositionsFunction {
-    function prePositionsFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$positionsFunctionInputs memory inputs) virtual external;
+    function prePositionsFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$PositionsFunctionInputs memory inputs) virtual external;
 
     function triggerPrePositionsFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1020,7 +1020,7 @@ abstract contract NonfungiblePositionManager$PreRefundEthFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnSafeTransferFromFunction {
-    function onSafeTransferFromFunction(FunctionContext memory ctx, NonfungiblePositionManager$safeTransferFromFunctionInputs memory inputs) virtual external;
+    function onSafeTransferFromFunction(FunctionContext memory ctx, NonfungiblePositionManager$SafeTransferFromFunctionInputs memory inputs) virtual external;
 
     function triggerOnSafeTransferFromFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1034,7 +1034,7 @@ abstract contract NonfungiblePositionManager$OnSafeTransferFromFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreSafeTransferFromFunction {
-    function preSafeTransferFromFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$safeTransferFromFunctionInputs memory inputs) virtual external;
+    function preSafeTransferFromFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$SafeTransferFromFunctionInputs memory inputs) virtual external;
 
     function triggerPreSafeTransferFromFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1048,7 +1048,7 @@ abstract contract NonfungiblePositionManager$PreSafeTransferFromFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnSelfPermitFunction {
-    function onSelfPermitFunction(FunctionContext memory ctx, NonfungiblePositionManager$selfPermitFunctionInputs memory inputs) virtual external;
+    function onSelfPermitFunction(FunctionContext memory ctx, NonfungiblePositionManager$SelfPermitFunctionInputs memory inputs) virtual external;
 
     function triggerOnSelfPermitFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1062,7 +1062,7 @@ abstract contract NonfungiblePositionManager$OnSelfPermitFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreSelfPermitFunction {
-    function preSelfPermitFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$selfPermitFunctionInputs memory inputs) virtual external;
+    function preSelfPermitFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$SelfPermitFunctionInputs memory inputs) virtual external;
 
     function triggerPreSelfPermitFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1076,7 +1076,7 @@ abstract contract NonfungiblePositionManager$PreSelfPermitFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnSelfPermitAllowedFunction {
-    function onSelfPermitAllowedFunction(FunctionContext memory ctx, NonfungiblePositionManager$selfPermitAllowedFunctionInputs memory inputs) virtual external;
+    function onSelfPermitAllowedFunction(FunctionContext memory ctx, NonfungiblePositionManager$SelfPermitAllowedFunctionInputs memory inputs) virtual external;
 
     function triggerOnSelfPermitAllowedFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1090,7 +1090,7 @@ abstract contract NonfungiblePositionManager$OnSelfPermitAllowedFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreSelfPermitAllowedFunction {
-    function preSelfPermitAllowedFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$selfPermitAllowedFunctionInputs memory inputs) virtual external;
+    function preSelfPermitAllowedFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$SelfPermitAllowedFunctionInputs memory inputs) virtual external;
 
     function triggerPreSelfPermitAllowedFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1104,7 +1104,7 @@ abstract contract NonfungiblePositionManager$PreSelfPermitAllowedFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnSelfPermitAllowedIfNecessaryFunction {
-    function onSelfPermitAllowedIfNecessaryFunction(FunctionContext memory ctx, NonfungiblePositionManager$selfPermitAllowedIfNecessaryFunctionInputs memory inputs) virtual external;
+    function onSelfPermitAllowedIfNecessaryFunction(FunctionContext memory ctx, NonfungiblePositionManager$SelfPermitAllowedIfNecessaryFunctionInputs memory inputs) virtual external;
 
     function triggerOnSelfPermitAllowedIfNecessaryFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1118,7 +1118,7 @@ abstract contract NonfungiblePositionManager$OnSelfPermitAllowedIfNecessaryFunct
 }
 
 abstract contract NonfungiblePositionManager$PreSelfPermitAllowedIfNecessaryFunction {
-    function preSelfPermitAllowedIfNecessaryFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$selfPermitAllowedIfNecessaryFunctionInputs memory inputs) virtual external;
+    function preSelfPermitAllowedIfNecessaryFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$SelfPermitAllowedIfNecessaryFunctionInputs memory inputs) virtual external;
 
     function triggerPreSelfPermitAllowedIfNecessaryFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1132,7 +1132,7 @@ abstract contract NonfungiblePositionManager$PreSelfPermitAllowedIfNecessaryFunc
 }
 
 abstract contract NonfungiblePositionManager$OnSelfPermitIfNecessaryFunction {
-    function onSelfPermitIfNecessaryFunction(FunctionContext memory ctx, NonfungiblePositionManager$selfPermitIfNecessaryFunctionInputs memory inputs) virtual external;
+    function onSelfPermitIfNecessaryFunction(FunctionContext memory ctx, NonfungiblePositionManager$SelfPermitIfNecessaryFunctionInputs memory inputs) virtual external;
 
     function triggerOnSelfPermitIfNecessaryFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1146,7 +1146,7 @@ abstract contract NonfungiblePositionManager$OnSelfPermitIfNecessaryFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreSelfPermitIfNecessaryFunction {
-    function preSelfPermitIfNecessaryFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$selfPermitIfNecessaryFunctionInputs memory inputs) virtual external;
+    function preSelfPermitIfNecessaryFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$SelfPermitIfNecessaryFunctionInputs memory inputs) virtual external;
 
     function triggerPreSelfPermitIfNecessaryFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1160,7 +1160,7 @@ abstract contract NonfungiblePositionManager$PreSelfPermitIfNecessaryFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnSetApprovalForAllFunction {
-    function onSetApprovalForAllFunction(FunctionContext memory ctx, NonfungiblePositionManager$setApprovalForAllFunctionInputs memory inputs) virtual external;
+    function onSetApprovalForAllFunction(FunctionContext memory ctx, NonfungiblePositionManager$SetApprovalForAllFunctionInputs memory inputs) virtual external;
 
     function triggerOnSetApprovalForAllFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1174,7 +1174,7 @@ abstract contract NonfungiblePositionManager$OnSetApprovalForAllFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreSetApprovalForAllFunction {
-    function preSetApprovalForAllFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$setApprovalForAllFunctionInputs memory inputs) virtual external;
+    function preSetApprovalForAllFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$SetApprovalForAllFunctionInputs memory inputs) virtual external;
 
     function triggerPreSetApprovalForAllFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1188,7 +1188,7 @@ abstract contract NonfungiblePositionManager$PreSetApprovalForAllFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnSupportsInterfaceFunction {
-    function onSupportsInterfaceFunction(FunctionContext memory ctx, NonfungiblePositionManager$supportsInterfaceFunctionInputs memory inputs, NonfungiblePositionManager$supportsInterfaceFunctionOutputs memory outputs) virtual external;
+    function onSupportsInterfaceFunction(FunctionContext memory ctx, NonfungiblePositionManager$SupportsInterfaceFunctionInputs memory inputs, NonfungiblePositionManager$SupportsInterfaceFunctionOutputs memory outputs) virtual external;
 
     function triggerOnSupportsInterfaceFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1202,7 +1202,7 @@ abstract contract NonfungiblePositionManager$OnSupportsInterfaceFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreSupportsInterfaceFunction {
-    function preSupportsInterfaceFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$supportsInterfaceFunctionInputs memory inputs) virtual external;
+    function preSupportsInterfaceFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$SupportsInterfaceFunctionInputs memory inputs) virtual external;
 
     function triggerPreSupportsInterfaceFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1216,7 +1216,7 @@ abstract contract NonfungiblePositionManager$PreSupportsInterfaceFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnSweepTokenFunction {
-    function onSweepTokenFunction(FunctionContext memory ctx, NonfungiblePositionManager$sweepTokenFunctionInputs memory inputs) virtual external;
+    function onSweepTokenFunction(FunctionContext memory ctx, NonfungiblePositionManager$SweepTokenFunctionInputs memory inputs) virtual external;
 
     function triggerOnSweepTokenFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1230,7 +1230,7 @@ abstract contract NonfungiblePositionManager$OnSweepTokenFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreSweepTokenFunction {
-    function preSweepTokenFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$sweepTokenFunctionInputs memory inputs) virtual external;
+    function preSweepTokenFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$SweepTokenFunctionInputs memory inputs) virtual external;
 
     function triggerPreSweepTokenFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1244,7 +1244,7 @@ abstract contract NonfungiblePositionManager$PreSweepTokenFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnSymbolFunction {
-    function onSymbolFunction(FunctionContext memory ctx, NonfungiblePositionManager$symbolFunctionOutputs memory outputs) virtual external;
+    function onSymbolFunction(FunctionContext memory ctx, NonfungiblePositionManager$SymbolFunctionOutputs memory outputs) virtual external;
 
     function triggerOnSymbolFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1272,7 +1272,7 @@ abstract contract NonfungiblePositionManager$PreSymbolFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnTokenByIndexFunction {
-    function onTokenByIndexFunction(FunctionContext memory ctx, NonfungiblePositionManager$tokenByIndexFunctionInputs memory inputs, NonfungiblePositionManager$tokenByIndexFunctionOutputs memory outputs) virtual external;
+    function onTokenByIndexFunction(FunctionContext memory ctx, NonfungiblePositionManager$TokenByIndexFunctionInputs memory inputs, NonfungiblePositionManager$TokenByIndexFunctionOutputs memory outputs) virtual external;
 
     function triggerOnTokenByIndexFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1286,7 +1286,7 @@ abstract contract NonfungiblePositionManager$OnTokenByIndexFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreTokenByIndexFunction {
-    function preTokenByIndexFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$tokenByIndexFunctionInputs memory inputs) virtual external;
+    function preTokenByIndexFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$TokenByIndexFunctionInputs memory inputs) virtual external;
 
     function triggerPreTokenByIndexFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1300,7 +1300,7 @@ abstract contract NonfungiblePositionManager$PreTokenByIndexFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnTokenOfOwnerByIndexFunction {
-    function onTokenOfOwnerByIndexFunction(FunctionContext memory ctx, NonfungiblePositionManager$tokenOfOwnerByIndexFunctionInputs memory inputs, NonfungiblePositionManager$tokenOfOwnerByIndexFunctionOutputs memory outputs) virtual external;
+    function onTokenOfOwnerByIndexFunction(FunctionContext memory ctx, NonfungiblePositionManager$TokenOfOwnerByIndexFunctionInputs memory inputs, NonfungiblePositionManager$TokenOfOwnerByIndexFunctionOutputs memory outputs) virtual external;
 
     function triggerOnTokenOfOwnerByIndexFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1314,7 +1314,7 @@ abstract contract NonfungiblePositionManager$OnTokenOfOwnerByIndexFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreTokenOfOwnerByIndexFunction {
-    function preTokenOfOwnerByIndexFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$tokenOfOwnerByIndexFunctionInputs memory inputs) virtual external;
+    function preTokenOfOwnerByIndexFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$TokenOfOwnerByIndexFunctionInputs memory inputs) virtual external;
 
     function triggerPreTokenOfOwnerByIndexFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1328,7 +1328,7 @@ abstract contract NonfungiblePositionManager$PreTokenOfOwnerByIndexFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnTokenUriFunction {
-    function onTokenUriFunction(FunctionContext memory ctx, NonfungiblePositionManager$tokenUriFunctionInputs memory inputs, NonfungiblePositionManager$tokenUriFunctionOutputs memory outputs) virtual external;
+    function onTokenUriFunction(FunctionContext memory ctx, NonfungiblePositionManager$TokenUriFunctionInputs memory inputs, NonfungiblePositionManager$TokenUriFunctionOutputs memory outputs) virtual external;
 
     function triggerOnTokenUriFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1342,7 +1342,7 @@ abstract contract NonfungiblePositionManager$OnTokenUriFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreTokenUriFunction {
-    function preTokenUriFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$tokenUriFunctionInputs memory inputs) virtual external;
+    function preTokenUriFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$TokenUriFunctionInputs memory inputs) virtual external;
 
     function triggerPreTokenUriFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1356,7 +1356,7 @@ abstract contract NonfungiblePositionManager$PreTokenUriFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnTotalSupplyFunction {
-    function onTotalSupplyFunction(FunctionContext memory ctx, NonfungiblePositionManager$totalSupplyFunctionOutputs memory outputs) virtual external;
+    function onTotalSupplyFunction(FunctionContext memory ctx, NonfungiblePositionManager$TotalSupplyFunctionOutputs memory outputs) virtual external;
 
     function triggerOnTotalSupplyFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1384,7 +1384,7 @@ abstract contract NonfungiblePositionManager$PreTotalSupplyFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnTransferFromFunction {
-    function onTransferFromFunction(FunctionContext memory ctx, NonfungiblePositionManager$transferFromFunctionInputs memory inputs) virtual external;
+    function onTransferFromFunction(FunctionContext memory ctx, NonfungiblePositionManager$TransferFromFunctionInputs memory inputs) virtual external;
 
     function triggerOnTransferFromFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1398,7 +1398,7 @@ abstract contract NonfungiblePositionManager$OnTransferFromFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreTransferFromFunction {
-    function preTransferFromFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$transferFromFunctionInputs memory inputs) virtual external;
+    function preTransferFromFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$TransferFromFunctionInputs memory inputs) virtual external;
 
     function triggerPreTransferFromFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1412,7 +1412,7 @@ abstract contract NonfungiblePositionManager$PreTransferFromFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnUniswapV3MintCallbackFunction {
-    function onUniswapV3MintCallbackFunction(FunctionContext memory ctx, NonfungiblePositionManager$uniswapV3MintCallbackFunctionInputs memory inputs) virtual external;
+    function onUniswapV3MintCallbackFunction(FunctionContext memory ctx, NonfungiblePositionManager$UniswapV3MintCallbackFunctionInputs memory inputs) virtual external;
 
     function triggerOnUniswapV3MintCallbackFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1426,7 +1426,7 @@ abstract contract NonfungiblePositionManager$OnUniswapV3MintCallbackFunction {
 }
 
 abstract contract NonfungiblePositionManager$PreUniswapV3MintCallbackFunction {
-    function preUniswapV3MintCallbackFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$uniswapV3MintCallbackFunctionInputs memory inputs) virtual external;
+    function preUniswapV3MintCallbackFunction(PreFunctionContext memory ctx, NonfungiblePositionManager$UniswapV3MintCallbackFunctionInputs memory inputs) virtual external;
 
     function triggerPreUniswapV3MintCallbackFunction() view external returns (Trigger memory) {
         return Trigger({
@@ -1440,7 +1440,7 @@ abstract contract NonfungiblePositionManager$PreUniswapV3MintCallbackFunction {
 }
 
 abstract contract NonfungiblePositionManager$OnUnwrapWeth9Function {
-    function onUnwrapWeth9Function(FunctionContext memory ctx, NonfungiblePositionManager$unwrapWeth9FunctionInputs memory inputs) virtual external;
+    function onUnwrapWeth9Function(FunctionContext memory ctx, NonfungiblePositionManager$UnwrapWeth9FunctionInputs memory inputs) virtual external;
 
     function triggerOnUnwrapWeth9Function() view external returns (Trigger memory) {
         return Trigger({
@@ -1454,7 +1454,7 @@ abstract contract NonfungiblePositionManager$OnUnwrapWeth9Function {
 }
 
 abstract contract NonfungiblePositionManager$PreUnwrapWeth9Function {
-    function preUnwrapWeth9Function(PreFunctionContext memory ctx, NonfungiblePositionManager$unwrapWeth9FunctionInputs memory inputs) virtual external;
+    function preUnwrapWeth9Function(PreFunctionContext memory ctx, NonfungiblePositionManager$UnwrapWeth9FunctionInputs memory inputs) virtual external;
 
     function triggerPreUnwrapWeth9Function() view external returns (Trigger memory) {
         return Trigger({
