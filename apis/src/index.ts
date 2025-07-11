@@ -4,7 +4,7 @@ import {
   poolTicksPerBlock,
   positionOwnerChanges,
 } from "./db/schema/Listener"; // Adjust the import path as necessary
-import {types, App, db} from "@duneanalytics/sim-idx";
+import { types, App, db, middlewares } from "@duneanalytics/sim-idx";
 
 const Address = types.Address;
 const Uint = types.Uint;
@@ -12,20 +12,22 @@ const Uint = types.Uint;
 const zeroAddress = Address.from("0000000000000000000000000000000000000000");
 
 const app = App.create<{
-    DB_CONNECTION_STRING: string; // Database connection string
-    ASSETS: any; // Cloudflare Worker's asset fetcher
-}>()
+  DB_CONNECTION_STRING: string; // Database connection string
+  ASSETS: any; // Cloudflare Worker's asset fetcher
+}>();
+
+app.use("*", middlewares.authentication);
 
 app.get("/", async (c) => {
   try {
     // Create a request for the static asset using the same origin
     const url = new URL("/index.html", c.req.url);
     const response = await c.env.ASSETS.fetch(url.toString());
-    
+
     if (!response.ok) {
       return c.text("HTML template not found", 404);
     }
-    
+
     const html = await response.text();
     return c.html(html);
   } catch (error) {
@@ -68,7 +70,7 @@ app.get("/lp-snapshot", async (c) => {
     const pool = Address.from(poolParam);
     const blockNumber = parseInt(blockNumberParam, 10);
 
-    const client = db.client(c)
+    const client = db.client(c);
 
     const poolTicks = client
       .select({
