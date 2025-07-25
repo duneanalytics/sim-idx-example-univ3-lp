@@ -72,12 +72,12 @@ contract UniswapV3PositionsListener is
     constructor() {}
 
     function onBurnEvent(EventContext memory ctx, UniswapV3Pool$BurnEventParams memory inputs) external override {
-        if (isOfficialPool(ctx.txn.call.callee) && inputs.amount > 0) {
-            latestPool = ctx.txn.call.callee;
+        if (isOfficialPool(ctx.txn.call.callee()) && inputs.amount > 0) {
+            latestPool = ctx.txn.call.callee();
             if (inputs.owner == POSITION_MANAGER) {
                 // Save event for later emission as we need to get the correct token_id from the NFTPositionManager.
-                savedPositions[keccak256(abi.encode(ctx.txn.hash, inputs.amount, "burn"))] = LpEvent({
-                    txn_hash: ctx.txn.hash,
+                savedPositions[keccak256(abi.encode(ctx.txn.hash(), inputs.amount, "burn"))] = LpEvent({
+                    txn_hash: ctx.txn.hash(),
                     block_number: block.number,
                     block_timestamp: block.timestamp,
                     pool: latestPool,
@@ -92,7 +92,7 @@ contract UniswapV3PositionsListener is
                 });
             } else {
                 emit LpEvents(
-                    ctx.txn.hash,
+                    ctx.txn.hash(),
                     block.number,
                     block.timestamp,
                     latestPool,
@@ -110,12 +110,12 @@ contract UniswapV3PositionsListener is
     }
 
     function onMintEvent(EventContext memory ctx, UniswapV3Pool$MintEventParams memory inputs) external override {
-        if (isOfficialPool(ctx.txn.call.callee) && inputs.amount > 0) {
-            latestPool = ctx.txn.call.callee;
+        if (isOfficialPool(ctx.txn.call.callee()) && inputs.amount > 0) {
+            latestPool = ctx.txn.call.callee();
             if (inputs.owner == POSITION_MANAGER) {
                 // Save event for later emission as we need to get the correct token_id from the NFTPositionManager.
-                savedPositions[keccak256(abi.encode(ctx.txn.hash, inputs.amount, "mint"))] = LpEvent({
-                    txn_hash: ctx.txn.hash,
+                savedPositions[keccak256(abi.encode(ctx.txn.hash(), inputs.amount, "mint"))] = LpEvent({
+                    txn_hash: ctx.txn.hash(),
                     block_number: block.number,
                     block_timestamp: block.timestamp,
                     pool: latestPool,
@@ -130,7 +130,7 @@ contract UniswapV3PositionsListener is
                 });
             } else {
                 emit LpEvents(
-                    ctx.txn.hash,
+                    ctx.txn.hash(),
                     block.number,
                     block.timestamp,
                     latestPool,
@@ -148,18 +148,18 @@ contract UniswapV3PositionsListener is
     }
 
     function onSwapEvent(EventContext memory ctx, UniswapV3Pool$SwapEventParams memory inputs) external override {
-        if (isOfficialPool(ctx.txn.call.callee)) {
-            if (poolTicks[ctx.txn.call.callee].txn_hash != bytes32(0)) {
-                visitedPools.push(ctx.txn.call.callee);
+        if (isOfficialPool(ctx.txn.call.callee())) {
+            if (poolTicks[ctx.txn.call.callee()].txn_hash != bytes32(0)) {
+                visitedPools.push(ctx.txn.call.callee());
             }
-            (uint160 sqrtPriceX96,,,,,,) = IUniswapV3Pool(ctx.txn.call.callee).slot0();
-            address token0 = IUniswapV3Pool(ctx.txn.call.callee).token0();
-            address token1 = IUniswapV3Pool(ctx.txn.call.callee).token1();
-            poolTicks[ctx.txn.call.callee] = PoolTick({
-                txn_hash: ctx.txn.hash,
+            (uint160 sqrtPriceX96,,,,,,) = IUniswapV3Pool(ctx.txn.call.callee()).slot0();
+            address token0 = IUniswapV3Pool(ctx.txn.call.callee()).token0();
+            address token1 = IUniswapV3Pool(ctx.txn.call.callee()).token1();
+            poolTicks[ctx.txn.call.callee()] = PoolTick({
+                txn_hash: ctx.txn.hash(),
                 block_number: block.number,
                 block_timestamp: block.timestamp,
-                pool: ctx.txn.call.callee,
+                pool: ctx.txn.call.callee(),
                 tick: inputs.tick,
                 sqrt_price_x96: sqrtPriceX96,
                 token0: token0,
@@ -175,7 +175,7 @@ contract UniswapV3PositionsListener is
         override
     {
         address pool;
-        try INonfungiblePositionManager(ctx.txn.call.callee).positions(inputs.tokenId) returns (
+        try INonfungiblePositionManager(ctx.txn.call.callee()).positions(inputs.tokenId) returns (
             uint96,
             address,
             address token0,
@@ -194,7 +194,7 @@ contract UniswapV3PositionsListener is
             pool = latestPool;
         }
         emit PositionOwnerChanges(
-            ctx.txn.hash, block.number, block.timestamp, inputs.from, inputs.to, inputs.tokenId, pool
+            ctx.txn.hash(), block.number, block.timestamp, inputs.from, inputs.to, inputs.tokenId, pool
         );
     }
 
@@ -202,7 +202,7 @@ contract UniswapV3PositionsListener is
         EventContext memory ctx,
         NonfungiblePositionManager$IncreaseLiquidityEventParams memory inputs
     ) external override {
-        LpEvent memory latestPosition = savedPositions[keccak256(abi.encode(ctx.txn.hash, inputs.liquidity, "mint"))];
+        LpEvent memory latestPosition = savedPositions[keccak256(abi.encode(ctx.txn.hash(), inputs.liquidity, "mint"))];
         latestPosition.token_id = inputs.tokenId;
         emit LpEvents(
             latestPosition.txn_hash,
@@ -224,7 +224,7 @@ contract UniswapV3PositionsListener is
         EventContext memory ctx,
         NonfungiblePositionManager$DecreaseLiquidityEventParams memory inputs
     ) external override {
-        LpEvent memory latestPosition = savedPositions[keccak256(abi.encode(ctx.txn.hash, inputs.liquidity, "burn"))];
+        LpEvent memory latestPosition = savedPositions[keccak256(abi.encode(ctx.txn.hash(), inputs.liquidity, "burn"))];
         latestPosition.token_id = inputs.tokenId;
         emit LpEvents(
             latestPosition.txn_hash,
