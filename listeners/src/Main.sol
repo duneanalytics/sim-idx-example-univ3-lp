@@ -9,12 +9,12 @@ import {FACTORY, POSITION_MANAGER} from "./Constants.sol";
 contract Triggers is BaseTriggers {
     function triggers() external virtual override {
         UniswapV3PositionsListener listener = new UniswapV3PositionsListener();
-        addTrigger(ChainIdAbi(1, UniswapV3Pool$Abi()), listener.triggerOnBurnEvent());
-        addTrigger(ChainIdAbi(1, UniswapV3Pool$Abi()), listener.triggerOnMintEvent());
-        addTrigger(ChainIdAbi(1, UniswapV3Pool$Abi()), listener.triggerOnSwapEvent());
-        addTrigger(ChainIdContract(1, POSITION_MANAGER), listener.triggerOnTransferEvent());
-        addTrigger(ChainIdContract(1, POSITION_MANAGER), listener.triggerOnIncreaseLiquidityEvent());
-        addTrigger(ChainIdContract(1, POSITION_MANAGER), listener.triggerOnDecreaseLiquidityEvent());
-        addTrigger(ChainIdGlobal(1), listener.triggerOnBlock());
+        addTrigger(chainAbi(Chains.Ethereum, UniswapV3Pool$Abi()), listener.triggerOnBurnEvent());
+        addTrigger(chainAbi(Chains.Ethereum, UniswapV3Pool$Abi()), listener.triggerOnMintEvent());
+        addTrigger(chainAbi(Chains.Ethereum, UniswapV3Pool$Abi()), listener.triggerOnSwapEvent());
+        addTrigger(chainContract(Chains.Ethereum, POSITION_MANAGER), listener.triggerOnTransferEvent());
+        addTrigger(chainContract(Chains.Ethereum, POSITION_MANAGER), listener.triggerOnIncreaseLiquidityEvent());
+        addTrigger(chainContract(Chains.Ethereum, POSITION_MANAGER), listener.triggerOnDecreaseLiquidityEvent());
+        addTrigger(chainGlobal(Chains.Ethereum), listener.triggerOnBlock());
     }
 }
