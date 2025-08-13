@@ -40,7 +40,7 @@ struct NonfungiblePositionManager$BurnFunctionInputs {
     uint256 tokenId;
 }
 
-struct NonfungiblePositionManager$CollectParams {
+struct NonfungiblePositionManager$INonfungiblePositionManager$CollectParams {
     uint256 tokenId;
     address recipient;
     uint128 amount0Max;
@@ -48,7 +48,7 @@ struct NonfungiblePositionManager$CollectParams {
 }
 
 struct NonfungiblePositionManager$CollectFunctionInputs {
-    NonfungiblePositionManager$CollectParams params;
+    NonfungiblePositionManager$INonfungiblePositionManager$CollectParams params;
 }
 
 struct NonfungiblePositionManager$CollectFunctionOutputs {
@@ -67,7 +67,7 @@ struct NonfungiblePositionManager$CreateAndInitializePoolIfNecessaryFunctionOutp
     address pool;
 }
 
-struct NonfungiblePositionManager$DecreaseLiquidityParams {
+struct NonfungiblePositionManager$INonfungiblePositionManager$DecreaseLiquidityParams {
     uint256 tokenId;
     uint128 liquidity;
     uint256 amount0Min;
@@ -76,7 +76,7 @@ struct NonfungiblePositionManager$DecreaseLiquidityParams {
 }
 
 struct NonfungiblePositionManager$DecreaseLiquidityFunctionInputs {
-    NonfungiblePositionManager$DecreaseLiquidityParams params;
+    NonfungiblePositionManager$INonfungiblePositionManager$DecreaseLiquidityParams params;
 }
 
 struct NonfungiblePositionManager$DecreaseLiquidityFunctionOutputs {
@@ -96,7 +96,7 @@ struct NonfungiblePositionManager$GetApprovedFunctionOutputs {
     address outArg0;
 }
 
-struct NonfungiblePositionManager$IncreaseLiquidityParams {
+struct NonfungiblePositionManager$INonfungiblePositionManager$IncreaseLiquidityParams {
     uint256 tokenId;
     uint256 amount0Desired;
     uint256 amount1Desired;
@@ -106,7 +106,7 @@ struct NonfungiblePositionManager$IncreaseLiquidityParams {
 }
 
 struct NonfungiblePositionManager$IncreaseLiquidityFunctionInputs {
-    NonfungiblePositionManager$IncreaseLiquidityParams params;
+    NonfungiblePositionManager$INonfungiblePositionManager$IncreaseLiquidityParams params;
 }
 
 struct NonfungiblePositionManager$IncreaseLiquidityFunctionOutputs {
@@ -124,7 +124,7 @@ struct NonfungiblePositionManager$IsApprovedForAllFunctionOutputs {
     bool outArg0;
 }
 
-struct NonfungiblePositionManager$MintParams {
+struct NonfungiblePositionManager$INonfungiblePositionManager$MintParams {
     address token0;
     address token1;
     uint24 fee;
@@ -139,7 +139,7 @@ struct NonfungiblePositionManager$MintParams {
 }
 
 struct NonfungiblePositionManager$MintFunctionInputs {
-    NonfungiblePositionManager$MintParams params;
+    NonfungiblePositionManager$INonfungiblePositionManager$MintParams params;
 }
 
 struct NonfungiblePositionManager$MintFunctionOutputs {
@@ -1467,6 +1467,46 @@ abstract contract NonfungiblePositionManager$PreUnwrapWeth9Function {
     }
 }
 
+
+struct NonfungiblePositionManager$EmitAllEvents$Approval {
+  address owner;
+  address approved;
+  uint256 tokenId;
+}
+
+struct NonfungiblePositionManager$EmitAllEvents$ApprovalForAll {
+  address owner;
+  address operator;
+  bool approved;
+}
+
+struct NonfungiblePositionManager$EmitAllEvents$Collect {
+  uint256 tokenId;
+  address recipient;
+  uint256 amount0;
+  uint256 amount1;
+}
+
+struct NonfungiblePositionManager$EmitAllEvents$DecreaseLiquidity {
+  uint256 tokenId;
+  uint128 liquidity;
+  uint256 amount0;
+  uint256 amount1;
+}
+
+struct NonfungiblePositionManager$EmitAllEvents$IncreaseLiquidity {
+  uint256 tokenId;
+  uint128 liquidity;
+  uint256 amount0;
+  uint256 amount1;
+}
+
+struct NonfungiblePositionManager$EmitAllEvents$Transfer {
+  address from;
+  address to;
+  uint256 tokenId;
+}
+
 contract NonfungiblePositionManager$EmitAllEvents is
   NonfungiblePositionManager$OnApprovalEvent,
 NonfungiblePositionManager$OnApprovalForAllEvent,
@@ -1475,30 +1515,30 @@ NonfungiblePositionManager$OnDecreaseLiquidityEvent,
 NonfungiblePositionManager$OnIncreaseLiquidityEvent,
 NonfungiblePositionManager$OnTransferEvent
 {
-  event Approval(address owner, address approved, uint256 tokenId);
-event ApprovalForAll(address owner, address operator, bool approved);
-event Collect(uint256 tokenId, address recipient, uint256 amount0, uint256 amount1);
-event DecreaseLiquidity(uint256 tokenId, uint128 liquidity, uint256 amount0, uint256 amount1);
-event IncreaseLiquidity(uint256 tokenId, uint128 liquidity, uint256 amount0, uint256 amount1);
-event Transfer(address from, address to, uint256 tokenId);
+  event Approval(NonfungiblePositionManager$EmitAllEvents$Approval);
+  event ApprovalForAll(NonfungiblePositionManager$EmitAllEvents$ApprovalForAll);
+  event Collect(NonfungiblePositionManager$EmitAllEvents$Collect);
+  event DecreaseLiquidity(NonfungiblePositionManager$EmitAllEvents$DecreaseLiquidity);
+  event IncreaseLiquidity(NonfungiblePositionManager$EmitAllEvents$IncreaseLiquidity);
+  event Transfer(NonfungiblePositionManager$EmitAllEvents$Transfer);
 
   function onApprovalEvent(EventContext memory ctx, NonfungiblePositionManager$ApprovalEventParams memory inputs) virtual external override {
-    emit Approval(inputs.owner, inputs.approved, inputs.tokenId);
+    emit Approval(NonfungiblePositionManager$EmitAllEvents$Approval(inputs.owner, inputs.approved, inputs.tokenId));
   }
 function onApprovalForAllEvent(EventContext memory ctx, NonfungiblePositionManager$ApprovalForAllEventParams memory inputs) virtual external override {
-    emit ApprovalForAll(inputs.owner, inputs.operator, inputs.approved);
+    emit ApprovalForAll(NonfungiblePositionManager$EmitAllEvents$ApprovalForAll(inputs.owner, inputs.operator, inputs.approved));
   }
 function onCollectEvent(EventContext memory ctx, NonfungiblePositionManager$CollectEventParams memory inputs) virtual external override {
-    emit Collect(inputs.tokenId, inputs.recipient, inputs.amount0, inputs.amount1);
+    emit Collect(NonfungiblePositionManager$EmitAllEvents$Collect(inputs.tokenId, inputs.recipient, inputs.amount0, inputs.amount1));
   }
 function onDecreaseLiquidityEvent(EventContext memory ctx, NonfungiblePositionManager$DecreaseLiquidityEventParams memory inputs) virtual external override {
-    emit DecreaseLiquidity(inputs.tokenId, inputs.liquidity, inputs.amount0, inputs.amount1);
+    emit DecreaseLiquidity(NonfungiblePositionManager$EmitAllEvents$DecreaseLiquidity(inputs.tokenId, inputs.liquidity, inputs.amount0, inputs.amount1));
   }
 function onIncreaseLiquidityEvent(EventContext memory ctx, NonfungiblePositionManager$IncreaseLiquidityEventParams memory inputs) virtual external override {
-    emit IncreaseLiquidity(inputs.tokenId, inputs.liquidity, inputs.amount0, inputs.amount1);
+    emit IncreaseLiquidity(NonfungiblePositionManager$EmitAllEvents$IncreaseLiquidity(inputs.tokenId, inputs.liquidity, inputs.amount0, inputs.amount1));
   }
 function onTransferEvent(EventContext memory ctx, NonfungiblePositionManager$TransferEventParams memory inputs) virtual external override {
-    emit Transfer(inputs.from, inputs.to, inputs.tokenId);
+    emit Transfer(NonfungiblePositionManager$EmitAllEvents$Transfer(inputs.from, inputs.to, inputs.tokenId));
   }
 
   function allTriggers() view external returns (Trigger[] memory) {

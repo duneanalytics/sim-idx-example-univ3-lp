@@ -1130,6 +1130,78 @@ abstract contract UniswapV3Pool$PreToken1Function {
     }
 }
 
+
+struct UniswapV3Pool$EmitAllEvents$Burn {
+  address owner;
+  int24 tickLower;
+  int24 tickUpper;
+  uint128 amount;
+  uint256 amount0;
+  uint256 amount1;
+}
+
+struct UniswapV3Pool$EmitAllEvents$Collect {
+  address owner;
+  address recipient;
+  int24 tickLower;
+  int24 tickUpper;
+  uint128 amount0;
+  uint128 amount1;
+}
+
+struct UniswapV3Pool$EmitAllEvents$CollectProtocol {
+  address sender;
+  address recipient;
+  uint128 amount0;
+  uint128 amount1;
+}
+
+struct UniswapV3Pool$EmitAllEvents$Flash {
+  address sender;
+  address recipient;
+  uint256 amount0;
+  uint256 amount1;
+  uint256 paid0;
+  uint256 paid1;
+}
+
+struct UniswapV3Pool$EmitAllEvents$IncreaseObservationCardinalityNext {
+  uint16 observationCardinalityNextOld;
+  uint16 observationCardinalityNextNew;
+}
+
+struct UniswapV3Pool$EmitAllEvents$Initialize {
+  uint160 sqrtPriceX96;
+  int24 tick;
+}
+
+struct UniswapV3Pool$EmitAllEvents$Mint {
+  address sender;
+  address owner;
+  int24 tickLower;
+  int24 tickUpper;
+  uint128 amount;
+  uint256 amount0;
+  uint256 amount1;
+}
+
+struct UniswapV3Pool$EmitAllEvents$SetFeeProtocol {
+  uint8 feeProtocol0Old;
+  uint8 feeProtocol1Old;
+  uint8 feeProtocol0New;
+  uint8 feeProtocol1New;
+}
+
+struct UniswapV3Pool$EmitAllEvents$Swap {
+  address sender;
+  address recipient;
+  int256 amount0;
+  int256 amount1;
+  uint160 sqrtPriceX96;
+  uint128 liquidity;
+  int24 tick;
+}
+
 contract UniswapV3Pool$EmitAllEvents is
   UniswapV3Pool$OnBurnEvent,
 UniswapV3Pool$OnCollectEvent,
@@ -1141,42 +1213,42 @@ UniswapV3Pool$OnMintEvent,
 UniswapV3Pool$OnSetFeeProtocolEvent,
 UniswapV3Pool$OnSwapEvent
 {
-  event Burn(address owner, int24 tickLower, int24 tickUpper, uint128 amount, uint256 amount0, uint256 amount1);
-event Collect(address owner, address recipient, int24 tickLower, int24 tickUpper, uint128 amount0, uint128 amount1);
-event CollectProtocol(address sender, address recipient, uint128 amount0, uint128 amount1);
-event Flash(address sender, address recipient, uint256 amount0, uint256 amount1, uint256 paid0, uint256 paid1);
-event IncreaseObservationCardinalityNext(uint16 observationCardinalityNextOld, uint16 observationCardinalityNextNew);
-event Initialize(uint160 sqrtPriceX96, int24 tick);
-event Mint(address sender, address owner, int24 tickLower, int24 tickUpper, uint128 amount, uint256 amount0, uint256 amount1);
-event SetFeeProtocol(uint8 feeProtocol0Old, uint8 feeProtocol1Old, uint8 feeProtocol0New, uint8 feeProtocol1New);
-event Swap(address sender, address recipient, int256 amount0, int256 amount1, uint160 sqrtPriceX96, uint128 liquidity, int24 tick);
+  event Burn(UniswapV3Pool$EmitAllEvents$Burn);
+  event Collect(UniswapV3Pool$EmitAllEvents$Collect);
+  event CollectProtocol(UniswapV3Pool$EmitAllEvents$CollectProtocol);
+  event Flash(UniswapV3Pool$EmitAllEvents$Flash);
+  event IncreaseObservationCardinalityNext(UniswapV3Pool$EmitAllEvents$IncreaseObservationCardinalityNext);
+  event Initialize(UniswapV3Pool$EmitAllEvents$Initialize);
+  event Mint(UniswapV3Pool$EmitAllEvents$Mint);
+  event SetFeeProtocol(UniswapV3Pool$EmitAllEvents$SetFeeProtocol);
+  event Swap(UniswapV3Pool$EmitAllEvents$Swap);
 
   function onBurnEvent(EventContext memory ctx, UniswapV3Pool$BurnEventParams memory inputs) virtual external override {
-    emit Burn(inputs.owner, inputs.tickLower, inputs.tickUpper, inputs.amount, inputs.amount0, inputs.amount1);
+    emit Burn(UniswapV3Pool$EmitAllEvents$Burn(inputs.owner, inputs.tickLower, inputs.tickUpper, inputs.amount, inputs.amount0, inputs.amount1));
   }
 function onCollectEvent(EventContext memory ctx, UniswapV3Pool$CollectEventParams memory inputs) virtual external override {
-    emit Collect(inputs.owner, inputs.recipient, inputs.tickLower, inputs.tickUpper, inputs.amount0, inputs.amount1);
+    emit Collect(UniswapV3Pool$EmitAllEvents$Collect(inputs.owner, inputs.recipient, inputs.tickLower, inputs.tickUpper, inputs.amount0, inputs.amount1));
   }
 function onCollectProtocolEvent(EventContext memory ctx, UniswapV3Pool$CollectProtocolEventParams memory inputs) virtual external override {
-    emit CollectProtocol(inputs.sender, inputs.recipient, inputs.amount0, inputs.amount1);
+    emit CollectProtocol(UniswapV3Pool$EmitAllEvents$CollectProtocol(inputs.sender, inputs.recipient, inputs.amount0, inputs.amount1));
   }
 function onFlashEvent(EventContext memory ctx, UniswapV3Pool$FlashEventParams memory inputs) virtual external override {
-    emit Flash(inputs.sender, inputs.recipient, inputs.amount0, inputs.amount1, inputs.paid0, inputs.paid1);
+    emit Flash(UniswapV3Pool$EmitAllEvents$Flash(inputs.sender, inputs.recipient, inputs.amount0, inputs.amount1, inputs.paid0, inputs.paid1));
   }
 function onIncreaseObservationCardinalityNextEvent(EventContext memory ctx, UniswapV3Pool$IncreaseObservationCardinalityNextEventParams memory inputs) virtual external override {
-    emit IncreaseObservationCardinalityNext(inputs.observationCardinalityNextOld, inputs.observationCardinalityNextNew);
+    emit IncreaseObservationCardinalityNext(UniswapV3Pool$EmitAllEvents$IncreaseObservationCardinalityNext(inputs.observationCardinalityNextOld, inputs.observationCardinalityNextNew));
   }
 function onInitializeEvent(EventContext memory ctx, UniswapV3Pool$InitializeEventParams memory inputs) virtual external override {
-    emit Initialize(inputs.sqrtPriceX96, inputs.tick);
+    emit Initialize(UniswapV3Pool$EmitAllEvents$Initialize(inputs.sqrtPriceX96, inputs.tick));
   }
 function onMintEvent(EventContext memory ctx, UniswapV3Pool$MintEventParams memory inputs) virtual external override {
-    emit Mint(inputs.sender, inputs.owner, inputs.tickLower, inputs.tickUpper, inputs.amount, inputs.amount0, inputs.amount1);
+    emit Mint(UniswapV3Pool$EmitAllEvents$Mint(inputs.sender, inputs.owner, inputs.tickLower, inputs.tickUpper, inputs.amount, inputs.amount0, inputs.amount1));
   }
 function onSetFeeProtocolEvent(EventContext memory ctx, UniswapV3Pool$SetFeeProtocolEventParams memory inputs) virtual external override {
-    emit SetFeeProtocol(inputs.feeProtocol0Old, inputs.feeProtocol1Old, inputs.feeProtocol0New, inputs.feeProtocol1New);
+    emit SetFeeProtocol(UniswapV3Pool$EmitAllEvents$SetFeeProtocol(inputs.feeProtocol0Old, inputs.feeProtocol1Old, inputs.feeProtocol0New, inputs.feeProtocol1New));
   }
 function onSwapEvent(EventContext memory ctx, UniswapV3Pool$SwapEventParams memory inputs) virtual external override {
-    emit Swap(inputs.sender, inputs.recipient, inputs.amount0, inputs.amount1, inputs.sqrtPriceX96, inputs.liquidity, inputs.tick);
+    emit Swap(UniswapV3Pool$EmitAllEvents$Swap(inputs.sender, inputs.recipient, inputs.amount0, inputs.amount1, inputs.sqrtPriceX96, inputs.liquidity, inputs.tick));
   }
 
   function allTriggers() view external returns (Trigger[] memory) {
