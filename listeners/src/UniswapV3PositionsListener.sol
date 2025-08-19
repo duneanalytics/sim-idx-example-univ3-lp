@@ -78,7 +78,7 @@ contract UniswapV3PositionsListener is
                 // Save event for later emission as we need to get the correct token_id from the NFTPositionManager.
                 savedPositions[keccak256(abi.encode(ctx.txn.hash(), inputs.amount, "burn"))] = LpEvent({
                     txn_hash: ctx.txn.hash(),
-                    block_number: block.number,
+                    block_number: blockNumber(),
                     block_timestamp: block.timestamp,
                     pool: latestPool,
                     event_type: "burn",
@@ -93,7 +93,7 @@ contract UniswapV3PositionsListener is
             } else {
                 emit LpEvents(
                     ctx.txn.hash(),
-                    block.number,
+                    blockNumber(),
                     block.timestamp,
                     latestPool,
                     "burn",
@@ -116,7 +116,7 @@ contract UniswapV3PositionsListener is
                 // Save event for later emission as we need to get the correct token_id from the NFTPositionManager.
                 savedPositions[keccak256(abi.encode(ctx.txn.hash(), inputs.amount, "mint"))] = LpEvent({
                     txn_hash: ctx.txn.hash(),
-                    block_number: block.number,
+                    block_number: blockNumber(),
                     block_timestamp: block.timestamp,
                     pool: latestPool,
                     event_type: "mint",
@@ -131,7 +131,7 @@ contract UniswapV3PositionsListener is
             } else {
                 emit LpEvents(
                     ctx.txn.hash(),
-                    block.number,
+                    blockNumber(),
                     block.timestamp,
                     latestPool,
                     "mint",
@@ -157,7 +157,7 @@ contract UniswapV3PositionsListener is
             address token1 = IUniswapV3Pool(ctx.txn.call.callee()).token1();
             poolTicks[ctx.txn.call.callee()] = PoolTick({
                 txn_hash: ctx.txn.hash(),
-                block_number: block.number,
+                block_number: blockNumber(),
                 block_timestamp: block.timestamp,
                 pool: ctx.txn.call.callee(),
                 tick: inputs.tick,
@@ -194,7 +194,7 @@ contract UniswapV3PositionsListener is
             pool = latestPool;
         }
         emit PositionOwnerChanges(
-            ctx.txn.hash(), block.number, block.timestamp, inputs.from, inputs.to, inputs.tokenId, pool
+            ctx.txn.hash(), blockNumber(), block.timestamp, inputs.from, inputs.to, inputs.tokenId, pool
         );
     }
 
