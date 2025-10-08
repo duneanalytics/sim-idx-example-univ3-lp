@@ -6,7 +6,7 @@
     "dev": "wrangler dev"
   },
   "dependencies": {
-    "@duneanalytics/sim-idx": "^1.2.3",
+    "@duneanalytics/sim-idx": "^2.0.0",
     "drizzle-orm": "^0.44.1"
   },
   "devDependencies": {
